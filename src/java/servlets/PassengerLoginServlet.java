@@ -1,6 +1,7 @@
 package servlets;
 
 import business.Passenger;
+import database.PassengerDB;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -8,11 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -26,30 +23,17 @@ public class PassengerLoginServlet extends HttpServlet {
         // Control variables
         String URL = "/LogIn.jsp";
         String userMessage = "";
-        String sqlCommand = "";
 
         // Passenger fields
         Passenger passenger;
-        String passengerEmail = "";
-        String passwordAttempt = "";
 
-        // Local database connection
-        String dbURL = "jdbc:mysql://localhost:3306/fastpass2";
-        String dbUSER = "root";
-        String dbPassword = "password";
-
-        // AWS database connection
-
-//String dbURL = "jdbc:mysql://fastpass.cbdiyphbqzxc.us-east-2.rds.amazonaws.com/fastpa//ss";
-//        String dbUSER //= "admin";
-//        String dbPassword = "fastpassword";
-        passengerEmail = request.getParameter("passengerEmail").trim();
+        String passengerEmail = request.getParameter("passengerEmail").trim();
 
         if (passengerEmail.isEmpty()) {
             userMessage += "Email is missing <br>";
         }
 
-        passwordAttempt = request.getParameter("passengerPassword").trim();
+        String passwordAttempt = request.getParameter("passengerPassword").trim();
 
         if (passwordAttempt.isEmpty()) {
             userMessage += "Password is missing <br>";
@@ -59,48 +43,20 @@ public class PassengerLoginServlet extends HttpServlet {
 
             try {
 
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                passenger = PassengerDB.passengerLogIn(passengerEmail, passwordAttempt);
 
-                Connection connection = DriverManager.getConnection(dbURL, dbUSER, dbPassword);
-                Statement statement = connection.createStatement();
-
-                sqlCommand = "SELECT * FROM passenger WHERE passenger_email = '" + passengerEmail + "'";
-
-                ResultSet resultSet = statement.executeQuery(sqlCommand);
-
-                if (resultSet.next()) {
-                    passenger = new Passenger();
-                    passenger.setId(resultSet.getInt("passenger_id"));
-                    passenger.setAccountNumber(resultSet.getString("passenger_accountnumber"));
-                    passenger.setLastName(resultSet.getString("passenger_lastname"));
-                    passenger.setFirstName(resultSet.getString("passenger_firstname"));
-                    passenger.setMiddleName(resultSet.getString("passenger_middlename"));
-                    passenger.setDob(resultSet.getDate("passenger_dob"));
-                    passenger.setEmail(resultSet.getString("passenger_email"));
-                    passenger.setPassword(resultSet.getString("passenger_password"));
-                    passenger.setPasswordAttempt(passwordAttempt);
-
-                    if (passenger.isAuthenticated()) {
-                        URL = "/Main.jsp";
-
-                        Cookie enteredID = new Cookie("passengerEmail", passengerEmail);
-                        enteredID.setMaxAge(60 * 5);
-                        enteredID.setPath("/");
-                        response.addCookie(enteredID);
-
-                    } else {
-                        userMessage = "You have entered an invalid Email or Password";
-                    }
+                if (passenger != null && passenger.isAuthenticated()) {
+                    URL = "/Main.jsp";
+                    Cookie enteredID = new Cookie("passengerEmail", passengerEmail);
+                    enteredID.setMaxAge(60 * 5);
+                    enteredID.setPath("/");
+                    response.addCookie(enteredID);
 
                     request.getSession().setAttribute("passenger", passenger);
 
                 } else {
                     userMessage = "You have entered an invalid Email or Password";
                 }
-
-                resultSet.close();
-                statement.close();
-                connection.close();
 
             } catch (SQLException sQLException) {
                 userMessage += "Connection Error: " + sQLException.getMessage();

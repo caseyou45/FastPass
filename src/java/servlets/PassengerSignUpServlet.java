@@ -1,6 +1,7 @@
 package servlets;
 
 import business.Passenger;
+import database.PassengerDB;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -8,12 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -35,13 +31,6 @@ public class PassengerSignUpServlet extends HttpServlet {
 
         Passenger passenger = new Passenger();
 
-//		String dbURL = "jdbc:mysql://fastpass.cbdiyphbqzxc.us-east-2.rds.amazonaws.com/fastpass";
-//		String dbUSER = "admin";
-//		String dbPassword = "fastpassword";
-        String dbURL = "jdbc:mysql://localhost:3306/fastpass2";
-        String dbUSER = "root";
-        String dbPassword = "password";
-
         passengerEmail = request.getParameter("passengerEmail");
 
         if (passengerEmail.isEmpty()) {
@@ -51,16 +40,10 @@ public class PassengerSignUpServlet extends HttpServlet {
         } else {
 
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
 
-                Connection connection = DriverManager.getConnection(dbURL, dbUSER, dbPassword);
-                Statement statement = connection.createStatement();
+                boolean emailUsed = PassengerDB.passengerExistsByEmail(passengerEmail);
 
-                String checkDBForEmail = "SELECT * FROM passenger WHERE passenger_email = '" + passengerEmail + "'";
-
-                ResultSet resultSet = statement.executeQuery(checkDBForEmail);
-
-                if (resultSet.next()) {
+                if (emailUsed) {
                     userMessage += "Email is already in use <br>";
 
                 } else {
@@ -68,13 +51,9 @@ public class PassengerSignUpServlet extends HttpServlet {
 
                 }
 
-                resultSet.close();
-                statement.close();
-                connection.close();
-
             } catch (ClassNotFoundException | SQLException e) {
+                userMessage += e.getMessage() + "<br>";
 
-                e.printStackTrace();
             }
         }
 
@@ -152,33 +131,18 @@ public class PassengerSignUpServlet extends HttpServlet {
 
         }
 
-        passenger.setAccountNumber(generateAccountNumber());
+        try {
+            passenger.setAccountNumber(generateAccountNumber());
+        } catch (ClassNotFoundException | SQLException e) {
+            userMessage += e.getMessage() + "<br>";
+
+        }
 
         if (userMessage.isEmpty()) {
 
-            String query = "INSERT INTO passenger" + "(passenger_accountnumber, passenger_lastname, "
-                    + "passenger_firstname, passenger_middlename, passenger_dob, "
-                    + "passenger_email, passenger_password) " + "VALUES (?, ?, ?, ?, ?, ?, ?);";
-
             try {
-                Connection connection = DriverManager.getConnection(dbURL, dbUSER, dbPassword);
-                connection.setAutoCommit(false);
 
-                PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-                preparedStatement.setString(1, passenger.getAccountNumber());
-                preparedStatement.setString(2, passenger.getLastName());
-                preparedStatement.setString(3, passenger.getFirstName());
-                preparedStatement.setString(4, passenger.getMiddleName());
-                preparedStatement.setDate(5, passenger.getDob());
-                preparedStatement.setString(6, passenger.getEmail());
-                preparedStatement.setString(7, passenger.getPassword());
-
-                preparedStatement.executeUpdate();
-                connection.commit();
-
-                preparedStatement.close();
-                connection.close();
+                PassengerDB.passengerSignUp(passenger);
 
                 URL = "/Main.jsp";
 
@@ -192,7 +156,7 @@ public class PassengerSignUpServlet extends HttpServlet {
 
                 request.getSession().setAttribute("passenger", passenger);
 
-            } catch (Exception e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 userMessage += e.getMessage() + "<br>";
             }
 
@@ -213,39 +177,14 @@ public class PassengerSignUpServlet extends HttpServlet {
 
     }
 
-    private String generateAccountNumber() {
-        String dbURL = "jdbc:mysql://localhost:3306/fastpass";
-        String dbUSER = "root";
-        String dbPassword = "password";
+    private String generateAccountNumber() throws ClassNotFoundException, SQLException {
 
-//		String dbURL = "jdbc:mysql://fastpass.cbdiyphbqzxc.us-east-2.rds.amazonaws.com/fastpass";
-//		String dbUSER = "admin";
-//		String dbPassword = "fastpassword";
-        String accountNumber = "";
+        long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
+        String accountNumber = String.valueOf(number);
+        boolean accountNumberUsed = PassengerDB.passengerExistsByAccountNumber(accountNumber);
 
-        try {
-
-            long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;
-
-            accountNumber = String.valueOf(number);
-
-            Connection connection = DriverManager.getConnection(dbURL, dbUSER, dbPassword);
-            Statement statement = connection.createStatement();
-
-            String checkDBForEmail = "SELECT * FROM passenger WHERE passenger_accountnumber = '" + accountNumber + "'";
-
-            ResultSet resultSet = statement.executeQuery(checkDBForEmail);
-
-            if (resultSet.next()) {
-                accountNumber = generateAccountNumber();
-            }
-
-            resultSet.close();
-            statement.close();
-            connection.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (accountNumberUsed) {
+            accountNumber = generateAccountNumber();
         }
 
         return accountNumber;
