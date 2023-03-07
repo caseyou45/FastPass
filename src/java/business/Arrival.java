@@ -1,6 +1,7 @@
 package business;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -12,7 +13,8 @@ public class Arrival {
     private int arrivalAirportId;
     private String arrivalTerminal;
     private String arrivalGate;
-    private Date arrivalTime;
+    private LocalDateTime arrivalTime;
+    private Airport airport;
 
     public int getArrivalId() {
         return arrivalId;
@@ -46,12 +48,30 @@ public class Arrival {
         this.arrivalGate = arrivalGate;
     }
 
-    public Date getArrivalTime() {
+    public LocalDateTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(LocalDateTime arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    public String getDisplayDate() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return arrivalTime.format(dateTimeFormatter);
+    }
+
+    public String getDisplayTime() {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("h:mm a");
+        return arrivalTime.format(dateTimeFormatter);
+    }
+
+    public Airport getAirport() {
+        return airport;
+    }
+
+    public void setAirport(Airport airport) {
+        this.airport = airport;
     }
 
     @Override

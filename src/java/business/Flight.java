@@ -15,6 +15,10 @@ public class Flight {
     private String airlineCode;
     private Arrival arrival;
     private Departure departure;
+    private int flightCapacity;
+    private int flightHeadcount;
+    private String flightPassStatusText;
+    private int flightPassAmountRemaining;
 
     public int getFlightId() {
         return flightId;
@@ -88,9 +92,36 @@ public class Flight {
         this.departure = departure;
     }
 
-    @Override
-    public String toString() {
-        return "Flight{" + "flightId=" + flightId + ", flightCode=" + flightCode + ", flightNumber=" + flightNumber + ", flightStatus=" + flightStatus + ", flightDuration=" + flightDuration + ", aircraftCode=" + aircraftCode + ", airlineCode=" + airlineCode + ", arrival=" + arrival + ", departure=" + departure + '}';
+    public int getFlightCapacity() {
+        return flightCapacity;
+    }
+
+    public void setFlightCapacity(int flightCapacity) {
+        this.flightCapacity = flightCapacity;
+    }
+
+    public int getFlightHeadcount() {
+        return flightHeadcount;
+    }
+
+    public void setFlightHeadcount(int flightHeadcount) {
+        this.flightHeadcount = flightHeadcount;
+    }
+
+    public String getFlightPassStatusText() {
+        return flightPassStatusText;
+    }
+
+    public void setFlightPassStatusText(String flightPassStatusText) {
+        this.flightPassStatusText = flightPassStatusText;
+    }
+
+    public int getFlightPassAmountRemaining() {
+        return flightPassAmountRemaining;
+    }
+
+    public void setFlightPassAmountRemaining(int flightPassAmountRemaining) {
+        this.flightPassAmountRemaining = flightPassAmountRemaining;
     }
 
 }

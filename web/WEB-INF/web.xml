@@ -8,6 +8,22 @@
         <servlet-name>PassengerSignUpServlet</servlet-name>
         <servlet-class>servlets.PassengerSignUpServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AllAirportsServlet</servlet-name>
+        <servlet-class>servlets.AllAirportsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StartFastPassServlet</servlet-name>
+        <servlet-class>servlets.StartFastPassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchFastPassServlet</servlet-name>
+        <servlet-class>servlets.SearchFastPassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PassengerLogOutServlet</servlet-name>
+        <servlet-class>servlets.PassengerLogOutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PassengerLoginServlet</servlet-name>
         <url-pattern>/PassengerLogin</url-pattern>
@@ -16,12 +32,28 @@
         <servlet-name>PassengerSignUpServlet</servlet-name>
         <url-pattern>/PassengerSignUp</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllAirportsServlet</servlet-name>
+        <url-pattern>/AllAirports</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StartFastPassServlet</servlet-name>
+        <url-pattern>/StartFastPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchFastPassServlet</servlet-name>
+        <url-pattern>/SearchFastPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassengerLogOutServlet</servlet-name>
+        <url-pattern>/PassengerLogOut</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-   <welcome-file-list>
+    <welcome-file-list>
         <welcome-file>mainpage.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

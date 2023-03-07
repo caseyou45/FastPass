@@ -35,7 +35,8 @@ public class ArrivalDB {
             arrival.setArrivalAirportId(resultSet.getInt("arrival_airport_id"));
             arrival.setArrivalTerminal(resultSet.getString("arrival_terminal"));
             arrival.setArrivalGate(resultSet.getString("arrival_gate"));
-            arrival.setArrivalTime(resultSet.getDate("arrival_time"));
+            arrival.setArrivalTime(resultSet.getTimestamp("arrival_time").toLocalDateTime());
+            arrival.setAirport(AirportDB.getAirportByID(resultSet.getInt("arrival_airport_id")));
 
         }
 

@@ -35,7 +35,8 @@ public class DepartureDB {
             departure.setDepartureAirportId(resultSet.getInt("departure_airport_id"));
             departure.setDepartureTerminal(resultSet.getString("departure_terminal"));
             departure.setDepartureGate(resultSet.getString("departure_gate"));
-            departure.setDepartureTime(resultSet.getDate("departure_time"));
+            departure.setDepartureTime(resultSet.getTimestamp("departure_time").toLocalDateTime());
+            departure.setAirport(AirportDB.getAirportByID(resultSet.getInt("departure_airport_id")));
 
         }
 

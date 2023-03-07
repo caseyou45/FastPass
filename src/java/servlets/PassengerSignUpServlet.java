@@ -144,7 +144,7 @@ public class PassengerSignUpServlet extends HttpServlet {
 
                 PassengerDB.passengerSignUp(passenger);
 
-                URL = "/Main.jsp";
+                URL = "/FastPassStart.jsp";
 
                 Cookie enteredID = new Cookie("passengerEmail", passengerEmail);
                 enteredID.setMaxAge(60 * 5);
@@ -177,6 +177,8 @@ public class PassengerSignUpServlet extends HttpServlet {
 
     }
 
+    /* Generates a random number and checks if that number is in use. If in use, it then repeats the process till
+    an un-used number is generated*/
     private String generateAccountNumber() throws ClassNotFoundException, SQLException {
 
         long number = (long) Math.floor(Math.random() * 9_000_000_000L) + 1_000_000_000L;

@@ -46,7 +46,7 @@ public class PassengerLoginServlet extends HttpServlet {
                 passenger = PassengerDB.passengerLogIn(passengerEmail, passwordAttempt);
 
                 if (passenger != null && passenger.isAuthenticated()) {
-                    URL = "/Main.jsp";
+                    URL = "/FastPassStart.jsp";
                     Cookie enteredID = new Cookie("passengerEmail", passengerEmail);
                     enteredID.setMaxAge(60 * 5);
                     enteredID.setPath("/");

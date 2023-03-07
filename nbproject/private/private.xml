@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/business/Flight.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/business/Airport.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/StartFastPassServlet.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/PassengerLogOutServlet.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/ArrivalDB.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/DepartureDB.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/web/FastPassOptions.jsp</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/SearchFastPassServlet.java</file>
+            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/AirportDB.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>southwest.com</title>
+        <title>Southwest.com</title>
         <style><%@include file="/css/mainPage.css"%></style>
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
 
@@ -28,33 +28,16 @@
 
 
 
+        <p class="user-message">${userMessage}</p>
 
 
-        <form action=""  method="post">
-            <div class="checkpasscontainer">
-                <h1 class="checkpass">Check Pass Availability </h1>
-                <table>
-                    <tr>
-                        <td>Date</td>
-                        <td>Flight</td>
-                    </tr>
-                    <tr>
-                        <td><input id="Date" type="text" /></td>
-                        <td><input id="name" type="text" /></td>
-                    </tr>
-                </table>
-                <button type="button" class="search">Search</button>
-            </div>
+        <form action="StartFastPass"  method="get">
+            <input class="search" type="submit" value="Search">
         </form>
 
 
         <div class="heartlogo">
         </div>
-
-
-
-
-
 
 
     </body>
