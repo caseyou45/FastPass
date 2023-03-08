@@ -1,37 +1,61 @@
 package servlets;
 
+import business.Flight;
+import database.FlightDB;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
  * @author CWilson
  */
-public class PassengerLogOutServlet extends HttpServlet {
+public class TestingServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Cookie[] cookies = request.getCookies();
+        String userMessage = "";
+        String URL = "/Testing.jsp";
 
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                cookie.setValue("");
-                cookie.setPath("/");
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
+        Flight flight = null;
+
+        try {
+            flight = FlightDB.getFlightByFlightId(8193);
+
+            if (flight != null) {
+                request.setAttribute("getFlightByFlightId", true);
+
+            } else {
+                request.setAttribute("getFlightByFlightId", false);
+
             }
+
+            flight = null;
+
+            flight = FlightDB.getFlightByFlightNumber("1557");
+
+            if (flight != null) {
+                request.setAttribute("getFlightByFlightNumber", true);
+
+            } else {
+                request.setAttribute("getFlightByFlightNumber", false);
+
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            userMessage += e.getMessage();
+
         }
 
-        request.getSession().invalidate();
+        request.setAttribute("userMessage", userMessage);
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/mainpage.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(URL);
 
         requestDispatcher.forward(request, response);
 

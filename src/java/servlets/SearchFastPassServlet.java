@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import business.Flight;
@@ -20,6 +16,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author CWilson
+ */
 @WebServlet(name = "StartFastPassServlet", urlPatterns = {"/StartFastPass"})
 public class SearchFastPassServlet extends HttpServlet {
 

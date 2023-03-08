@@ -23,7 +23,7 @@
 
 
         <div class="header">
-            <h1>Get a Fast Pass Today.</h1>
+            <h1>Puchases a Fast Pass Today!</h1>
         </div>
 
 
@@ -32,7 +32,7 @@
 
 
         <form action="StartFastPass"  method="get">
-            <input class="search" type="submit" value="Search">
+            <input class="search" type="submit" value="See Availability">
         </form>
 
 
