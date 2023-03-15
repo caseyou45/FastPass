@@ -1,36 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/servlets/StartFastPassServlet.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>44</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/business/Airport.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/TicketDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/LogIn.jsp</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/FlightDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/DBUtil.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/ArrivalDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/css/SignUp.css</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/FastPassStart.jsp</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/FastPassDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/FastPassOptions.jsp</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/PassengerSignUpServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/SignUp.jsp</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/StartFastPassServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/PassengerLogOutServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/css/LogIn.css</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/PassengerDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/css/registration.css</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/css/default.css</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/css/FastPassOptions.css</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/PassengerLoginServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/SearchFastPassServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/AirportDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/business/Flight.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/database/DepartureDB.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/service/FastPassService.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/servlets/AllAirportsServlet.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/src/java/business/Passenger.java</file>
-            <file>file:/Users/CWilson/Desktop/FastPassSW/web/mainpage.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

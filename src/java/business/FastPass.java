@@ -11,6 +11,9 @@ public class FastPass {
     private int fastPassAmountUsed;
     private int passengerId;
     private int flightId;
+    private int ticketId;
+    private Ticket ticket;
+    private Flight flight;
 
     public int getFastPassId() {
         return fastPassId;
@@ -50,6 +53,30 @@ public class FastPass {
 
     public void setFlightId(int flightId) {
         this.flightId = flightId;
+    }
+
+    public int getTicketId() {
+        return ticketId;
+    }
+
+    public void setTicketId(int ticketId) {
+        this.ticketId = ticketId;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
+    }
+
+    public Ticket getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
 }

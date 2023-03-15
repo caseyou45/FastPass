@@ -28,6 +28,10 @@
         <servlet-name>TestingServlet</servlet-name>
         <servlet-class>servlets.TestingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountInfoServlet</servlet-name>
+        <servlet-class>servlets.AccountInfoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PassengerLoginServlet</servlet-name>
         <url-pattern>/PassengerLogin</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>TestingServlet</servlet-name>
         <url-pattern>/Testing</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountInfoServlet</servlet-name>
+        <url-pattern>/AccountInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

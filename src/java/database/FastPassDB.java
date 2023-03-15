@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -65,7 +67,32 @@ public class FastPassDB {
 
     }
 
-    public static FastPass getFastPassByVerificationNumber(String verificationNumber) throws SQLException {
+    public static List<FastPass> getFastPassesByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
+
+        List<FastPass> fastPassList = new ArrayList<>();
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        String query = "select * from fastpass f where f.passenger_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, passengerID);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            fastPassList.add(resultSetToFastPass(resultSet));
+        }
+
+        preparedStatement.close();
+        connection.close();
+
+        return fastPassList;
+
+    }
+
+    public static FastPass getFastPassByVerificationNumber(String verificationNumber) throws SQLException, ClassNotFoundException {
 
         FastPass fastPass = null;
 
@@ -80,13 +107,7 @@ public class FastPassDB {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) {
-            fastPass = new FastPass();
-            fastPass.setFastPassId(resultSet.getInt("fastpass_id"));
-            fastPass.setPassengerId(resultSet.getInt("passenger_id"));
-            fastPass.setFlightId(resultSet.getInt("flight_id"));
-            fastPass.setFastPassAmountUsed(resultSet.getInt("fastpass_amountused"));
-            fastPass.setFastPassVerificationNumber(resultSet.getString("fastpass_verification_number"));
-
+            fastPass = resultSetToFastPass(resultSet);
         }
 
         preparedStatement.close();
@@ -109,4 +130,18 @@ public class FastPassDB {
         return verificationNumber;
     }
 
+    private static FastPass resultSetToFastPass(ResultSet resultSet) throws SQLException, ClassNotFoundException {
+
+        FastPass fastPass = new FastPass();
+        fastPass.setFastPassId(resultSet.getInt("fastpass_id"));
+        fastPass.setPassengerId(resultSet.getInt("passenger_id"));
+        fastPass.setFlightId(resultSet.getInt("flight_id"));
+        fastPass.setTicketId(resultSet.getInt("ticket_id"));
+        fastPass.setFastPassAmountUsed(resultSet.getInt("fastpass_amountused"));
+        fastPass.setFastPassVerificationNumber(resultSet.getString("fastpass_verification_number"));
+        fastPass.setFlight(FlightDB.getFlightByFlightId(resultSet.getInt("flight_id")));
+        fastPass.setTicket(TicketDB.getTicketByID(resultSet.getInt("ticket_id")));
+        return fastPass;
+
+    }
 }

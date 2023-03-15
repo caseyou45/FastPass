@@ -40,6 +40,13 @@ header {
 }
 
 
+header div {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap:1rem;
+}
+
 
 main {
 	background-color: #f5f5f5;
@@ -126,12 +133,7 @@ select {
 	
 }
 
-a {
-	text-align:left;
-	margin-top:10px;
-	color:blue;
-	
-}
+
 
 
 .user-message {
@@ -147,14 +149,16 @@ a {
   border-radius: 4px;
   padding: .5rem 1rem;
   cursor: pointer;
-  text-decoration:none;
-  margin-right:5px;
-  width:15rem;
-  
+  text-decoration:none;  
+  text-align:left;
+  color:blue;
+
 }
 
 
-.SignIn {
+
+
+.SignIn, .Account {
   background-color: #ffc800;
   border: 2px solid var(--swa-blue);
   color: #0072c6;
@@ -163,10 +167,9 @@ a {
 
 
 
-.SignIn:hover{
+.SignIn:hover, .Account:hover{
   background-color: var(--swa-blue);
   color: white;
-  
   
 }
 

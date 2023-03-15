@@ -1,44 +1,55 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package servlets;
 
-import business.Airport;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import database.AirportDB;
+import business.FastPass;
+import business.Passenger;
+import database.FastPassDB;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author CWilson
  */
-public class AllAirportsServlet extends HttpServlet {
+public class AccountInfoServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Airport> list = new ArrayList<>();
+        response.setContentType("text/html;charset=UTF-8");
 
-        try {
-            list = AirportDB.getAllAirports();
-        } catch (SQLException | ClassNotFoundException ex) {
+        String accountNumber = request.getParameter("accountNumber").trim();
+        String userMessage = "";
+
+        List<FastPass> fastPasses = null;
+        Passenger passenger = (Passenger) request.getSession().getAttribute("passenger");
+
+        if (passenger.getAccountNumber().equals(accountNumber)) {
+            try {
+                fastPasses = FastPassDB.getFastPassesByPassengerID(passenger.getId());
+            } catch (SQLException | ClassNotFoundException ex) {
+                userMessage += "Error: " + ex.getMessage();
+            }
+
+        } else {
+            userMessage += "Unauthorized Access: Unable to complete request";
 
         }
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        request.setAttribute("fastPasses", fastPasses);
+        request.setAttribute("userMessage", userMessage);
 
-        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(list);
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/AccountDisplay.jsp");
 
-        PrintWriter out = response.getWriter();
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        out.print(json);
-        out.flush();
+        requestDispatcher.forward(request, response);
 
     }
 

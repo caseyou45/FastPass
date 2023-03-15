@@ -26,14 +26,10 @@
             <h1>Puchases a Fast Pass Today!</h1>
         </div>
 
-
-
         <p class="user-message">${userMessage}</p>
 
+        <a href='StartFastPass' class="search">See Availability</a>
 
-        <form action="StartFastPass"  method="get">
-            <input class="search" type="submit" value="See Availability">
-        </form>
 
 
         <div class="heartlogo">

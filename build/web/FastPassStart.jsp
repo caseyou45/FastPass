@@ -19,9 +19,10 @@
             <a  href="/FastPass"><img src="images/SWLogo.png" width="340" height="auto" /></a>
                 <c:choose>
                     <c:when test="${passenger.authenticated}">
-                    <form action="PassengerLogOut"  method="GET">
-                        <input type="submit" value="Log Out" class="logOut">
-                    </form>
+                    <div>
+                        <a href='AccountInfo?accountNumber=${passenger.accountNumber}' class="Account">Account</a>
+                        <a href="PassengerLogOut" class="logOut">Log Out</a>
+                    </div>
                 </c:when>
                 <c:otherwise >
                     <div>
@@ -73,22 +74,5 @@
                 </div>
                 </main>
             </form>
-
-            <script>
-                document.getElementById('date').valueAsDate = new Date();
-                const aiportOption = document.getElementById('airport-select');
-
-                fetch("/FastPass/AllAirports").then(response => response.json())
-                        .then(airports => {
-
-                            for (const airport of airports) {
-                                let opt = document.createElement('option');
-                                opt.value = airport.airportCode;
-                                opt.innerHTML = airport.airportName + " (" + airport.airportCode + ")";
-                                aiportOption.appendChild(opt);
-                            }
-                        });
-
-            </script>
     </body>
 </html>
