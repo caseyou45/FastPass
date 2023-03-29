@@ -7,7 +7,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Southwest.com</title>
+        <title>Southwest Airlines | Fast Pass</title>
         <style><%@include file="/css/mainPage.css"%></style>
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
 
@@ -15,20 +15,32 @@
 
 
     <body>
-        <img src="images/SWLogo.png" width="auto" height="90" />
+        <header>
+            <div class="header_useracc">
+                <form action="LogIn.jsp" method="post">
+                    <button type="submit" class="LogInEnroll" value="logIn"> Log In/Enroll</button>
+                </form>
+            </div>
+            <img src="images/swa_logo_dark.svg" class="header_logo"/>
+        </header>
 
-        <form action="LogIn.jsp" method="post">
-            <button type="submit" class="LogInEnroll" value="logIn"> Log In/Enroll</button>
-        </form>
 
-
-        <div class="header">
-            <h1>Puchases a Fast Pass Today!</h1>
-        </div>
-
-        <p class="user-message">${userMessage}</p>
-
-        <a href='StartFastPass' class="search">See Availability</a>
+        <div class="banner"></div>
+        <article>
+            <div class="bannertext">
+                <h1>Skip the Headache</h1>
+                <h1>m,ore text</h1>
+                <h1>button or some such</h1>
+                <h1>block text</h1>
+            </div>
+            
+            <div class="availiability">
+                <br><br>
+                <a href='StartFastPass'>See Availability</a>
+                <br><br><br><br>
+                <p class="user-message">${userMessage}</p>
+            </div>
+        </article>
 
 
 

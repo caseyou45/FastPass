@@ -1,38 +1,44 @@
 @charset "UTF-8";
 
+@font-face {
+    font-family: "Southwest sans";
+    src: url("fonts/SouthwestSans-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "Southwest sans Bold";
+    src: url("fonts/SouthwestSans-Bold.otf") format("opentype");
+}
 
 
-
-html {
-	
+html, button {
 	font-family: Southwest sans, Arial, sans-serif;
 }
 
 
 
-div.header {
-	background-image: url(images/1.png);	
-	height: 35vh;
-	background-size: 100% 130%;
+div.banner {
+	background-image: url(images/banner.png);	
+	height: 717px;
+        max-width: 1680px;
+        position: relative;
+        top: 23px;
+        margin: auto;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;	
+        z-index: -1;
+        margin-bottom: -700px;
 }
 
 h1 {
+        font-family: Southwest sans Bold, Arial, sans-serif;
 	color: #ffbd28;
 	font-size: 40px;
-	font-style:bold;
-	text-indent: 5%;
-	padding: 40px;
-	
 }
 h2 {
+        font-family: Southwest sans Bold, Arial, sans-serif;
 	color: white;
 	font-size: 24px;
-	font-style:bold;
-	text-indent: 5%;
-	padding-top: -60px;
-	
 }
 
 
@@ -44,27 +50,38 @@ h2 {
   padding: 12px 20px;
   cursor: pointer;
   float:right;
-
-  
-  
 }
 
 button.LogInEnroll {
-  background-color:white ;
-  color: rgb(16, 73, 181);
-  position:fixed;
- top:55px;
-  left:85%;
-  
+  background-color:rgb(255,191,39) ;
+  color: rgb(17, 27, 64);
 }
 
-  
- 
+header {
+    max-width: 937px;
+    margin: auto;
+}
 
+div.header_useracc {
+    height: 36px;
+}
+
+article {
+    max-width: 937px;
+    margin: auto;
+}
+
+div.bannertext {
+    margin: 0px 105px;
+}
+
+div.availiability {
+    background-color: white;
+}
 
 h1.checkpass {
 	font-size: 30px;
-    text-align:center;
+        text-align:center;
 	padding: 8px;
 	color: rgb(16, 73, 181);
 	font-family: Southwest sans, Arial, sans-serif;
