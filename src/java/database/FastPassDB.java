@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class FastPassDB {
 
-    public static String createNewFastPass(int passengerID) throws SQLException, ClassNotFoundException {
+    public static String createNewFastPass(int passengerID, int startingAmount) throws SQLException, ClassNotFoundException {
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
         connection.setAutoCommit(false);
 
-        String query = "INSERT INTO fastpass" + "(fastpass_verification_number, fastpass_amountused, "
+        String query = "INSERT INTO fastpass" + "(fastpass_verification_number, fastpass_amountleft, "
                 + "passenger_id) " + "VALUES (?, ?, ?);";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -28,7 +28,7 @@ public class FastPassDB {
         String verificationNumber = generateFastPassVerificationNumber();
 
         preparedStatement.setString(1, verificationNumber);
-        preparedStatement.setInt(2, 1);
+        preparedStatement.setInt(2, startingAmount);
         preparedStatement.setInt(3, passengerID);
 
         preparedStatement.executeUpdate();
@@ -47,7 +47,7 @@ public class FastPassDB {
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 
-        String query = "select count(*) as count from fastpass f where f.flight_id = ?";
+        String query = "select count(*) from ticket where flight_id = ? and fastpass_id is not NULL;";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -69,9 +69,9 @@ public class FastPassDB {
 
     public static List<FastPass> getFastPassesByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
 
-        List<FastPass> fastPassList = new ArrayList<>();
-
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        List<FastPass> fastPassList = new ArrayList<>();
 
         String query = "select * from fastpass f where f.passenger_id = ?";
 
@@ -92,13 +92,33 @@ public class FastPassDB {
 
     }
 
+    public static boolean updateFastPassAmountLeft(FastPass fastPass, int newAmount) throws SQLException {
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        String query = "Update fastpass f set f.fastpass_amountleft = ? where f.fastpass_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, newAmount);
+        preparedStatement.setInt(2, fastPass.getFastPassId());
+
+        int result = preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+        return result > 0;
+
+    }
+
     public static FastPass getFastPassByVerificationNumber(String verificationNumber) throws SQLException, ClassNotFoundException {
 
         FastPass fastPass = null;
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 
-        String query = "select * from fastpass f where f.ticket_number = ?";
+        String query = "select * from fastpass f where f.fastpass_verification_number = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -135,12 +155,8 @@ public class FastPassDB {
         FastPass fastPass = new FastPass();
         fastPass.setFastPassId(resultSet.getInt("fastpass_id"));
         fastPass.setPassengerId(resultSet.getInt("passenger_id"));
-        fastPass.setFlightId(resultSet.getInt("flight_id"));
-        fastPass.setTicketId(resultSet.getInt("ticket_id"));
-        fastPass.setFastPassAmountUsed(resultSet.getInt("fastpass_amountused"));
+        fastPass.setFastPassAmountLeft(resultSet.getInt("fastpass_amountleft"));
         fastPass.setFastPassVerificationNumber(resultSet.getString("fastpass_verification_number"));
-        fastPass.setFlight(FlightDB.getFlightByFlightId(resultSet.getInt("flight_id")));
-        fastPass.setTicket(TicketDB.getTicketByID(resultSet.getInt("ticket_id")));
         return fastPass;
 
     }

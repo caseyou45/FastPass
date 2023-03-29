@@ -1,6 +1,8 @@
 package servlets;
 
+import business.CreditCard;
 import business.Flight;
+import database.CreditCardDB;
 import database.FlightDB;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -48,8 +51,32 @@ public class TestingServlet extends HttpServlet {
 
             }
 
+            CreditCard creditCard = new CreditCard();
+            creditCard.setCcId(1);
+            creditCard.setCcNumber("1");
+            creditCard.setCcType("1");
+            creditCard.setCcCvv("1");
+            creditCard.setCcExpiration("1");
+            creditCard.setCcFirstname("1");
+            creditCard.setCcLastname("1");
+            creditCard.setPassengerId(1000);
+
+            CreditCardDB.createNewCreditCard(creditCard);
+
+            request.setAttribute("createNewCreditCard", true);
+
+            List<CreditCard> creditCards = CreditCardDB.getPassengerCreditCard(1000);
+
+            if (!creditCards.isEmpty()) {
+                request.setAttribute("getPassengerCreditCard", true);
+
+            } else {
+                request.setAttribute("getPassengerCreditCard", false);
+
+            }
+
         } catch (ClassNotFoundException | SQLException e) {
-            userMessage += e.getMessage();
+            userMessage += e;
 
         }
 

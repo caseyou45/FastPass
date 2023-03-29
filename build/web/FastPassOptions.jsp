@@ -18,21 +18,21 @@
         <title>Fast Pass | Availability</title>
     </head>
     <header>
-        <a  href="/FastPass"><img src="images/SWLogo.png" width="340" height="auto" /></a>
+        <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
-                <form action="PassengerLogOut"  method="GET">
-                    <input type="submit" value="Log Out" class="logOut">
-                </form>
+                <div>
+                    <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
+                    <a  href="PassengerLogOut" class="logout">Logout</a>
+                </div>
             </c:when>
             <c:otherwise >
                 <div>
-                    <a href="/FastPass/LogIn.jsp" class="SignIn">Log In</a>
-                    <a href="/FastPass/SignUp.jsp" class="SignUp">Create Account</a>
+                    <a href="LogIn.jsp" class="login">Log In</a>
+                    <a href="SignUp.jsp" class="signup">Create Account</a>
                 </div>
             </c:otherwise>
         </c:choose>
-
     </header>
     <main>
         <p class="user-message">${userMessage}</p>

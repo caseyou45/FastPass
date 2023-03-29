@@ -32,6 +32,10 @@
         <servlet-name>AccountInfoServlet</servlet-name>
         <servlet-class>servlets.AccountInfoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PurchaseFastPassServlet</servlet-name>
+        <servlet-class>servlets.PurchaseFastPassServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PassengerLoginServlet</servlet-name>
         <url-pattern>/PassengerLogin</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>AccountInfoServlet</servlet-name>
         <url-pattern>/AccountInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PurchaseFastPassServlet</servlet-name>
+        <url-pattern>/PurchaseFastPass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

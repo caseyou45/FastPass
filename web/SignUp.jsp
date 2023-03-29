@@ -15,7 +15,7 @@
     </head>
     <body>
     <header>
-        <a  href="/FastPass"><img src="images/SWLogo.png" width="340" height="auto" /></a>
+        <a  href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
     </header>
     <h1>Fast Pass Sign Up</h1>
 
@@ -77,35 +77,38 @@
                 <div class="form-row">
                     <div>
                         <label>Card Type</label>
-                        <select id="cardType" name="cardType" >
-                            <option value="">--Select--</option>
-                            <option value="AmericanExpress" >American Express</option>
-                            <option value="Discover" >Discover</option>
-                            <option value="MasterCard" >MasterCard</option>
-                            <option value="Visa" >Visa</option>
+                        <select id="ccType" name="ccType" >
+                            <option value="" selected="${creditCard.ccType == ""}">--Select--</option>
+                            <option value="AmericanExpress" ${creditCard.ccType == "AmericanExpress" ? "selected" : ""} >American Express</option>
+                            <option value="Discover" ${creditCard.ccType == "Discover" ? "selected" : ""} >Discover</option>
+                            <option value="MasterCard"  ${creditCard.ccType == "MasterCard" ? "selected" : ""} >MasterCard</option>
+                            <option value="Visa" ${creditCard.ccType == "Visa" ? "selected" : ""}>Visa</option>
                         </select>
                     </div>
                     <div>
                         <label>Credit Card #</label>
-                        <input id="cardNumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                        <input id="ccNumber" name="ccNumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}"
+                               autocomplete="cc-number"
+                               maxlength="19" placeholder="xxxx xxxx xxxx xxxx"
+                               value="${creditCard.ccNumber}">
                     </div>
 
                     <div>
-                        <label>Expiration Date</label> <input type="text" name="cardExp" id="cardExp" placeholder="MM/YYYY">
+                        <label>Expiration Date</label> <input type="text" name="ccExpiration" id="ccExpiration" placeholder="MM/YYYY"  value="${creditCard.ccExpiration}">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div>
                         <label>First Name on Card</label> <input type="text"
-                                                                 name="cardFirstName" id="cardFirstName"">
+                                                                 name="ccFirstname" id="ccFirstname"  value="${creditCard.ccFirstname}">
                     </div>
 
                     <div>
-                        <label>Last Name on Card</label> <input type="text" name="cardLastName" id="cardLastName" >
+                        <label>Last Name on Card</label> <input type="text" name="ccLastname" id="ccLastname" value="${creditCard.ccLastname}">
                     </div>
                     <div>
-                        <label>CVV</label> <input type="text" name="cardCVV" id="cardCVV" maxlength="3" placeholder="xxx" >
+                        <label>CVV</label> <input type="text" name="ccCvv" id="ccCvv" maxlength="3" placeholder="xxx"  value="${creditCard.ccCvv}" >
                     </div>
                 </div>
                 <div class="form-row">
@@ -113,7 +116,7 @@
                         <input type="submit" value="Sign Up">
                     </div>
                     <div >
-                        <a href="/FastPass/LogIn.jsp">Log In</a>
+                        <a href="LogIn.jsp">Log In</a>
                     </div>
                 </div>
             </section>

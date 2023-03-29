@@ -4,7 +4,7 @@
 @charset "UTF-8";
 
 :root {
-  --swa-blue: #0072c6;
+  --swa-blue: #304cb2;
   --swa-red: #e50000;
   --swa-yellow: #ffc800;
  
@@ -44,6 +44,7 @@ header div {
     display:flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
     gap:1rem;
 }
 
@@ -137,71 +138,44 @@ select {
 
 
 .user-message {
-	color:red;
-	margin-left:10px;
-}
-
-
-a {
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 4px;
-  padding: .5rem 1rem;
-  cursor: pointer;
-  text-decoration:none;  
-  text-align:left;
-  color:blue;
-
+    color:red;
+    margin-left:10px;
 }
 
 
 
 
-.SignIn, .Account {
-  background-color: #ffc800;
-  border: 2px solid var(--swa-blue);
-  color: #0072c6;
+
+
+.login, .account {
+  font: bold 17px/1 Arial;
+  color: #111B40;
+  border:none;
+  background: #FFBF27;
+  padding: .75rem 1.5rem;
+  text-decoration: none;
   
 }
 
 
 
-.SignIn:hover, .Account:hover{
-  background-color: var(--swa-blue);
-  color: white;
+.login:hover, .account:hover{
+   border-color: #FAD101 #FAD101 #D2AF01;
+   box-shadow: 0px 2px 4px 0px rgba(0,0,0,.2);
   
 }
 
-.SignUp {
-  background-color: #0072c6;
-  border: 2px solid var(--swa-blue);
-  color: white;
-  
+.signup, .logout {
+    color:var(--swa-blue);
+    text-decoration: none;
+
+    
 }
 
-.SignUp:hover {
-  background-color: #ffc800; 
-  color: white;
-}
+.signup:hover, .logout:hover {
+   text-decoration: underline;
 
 
-.logOut {
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 4px;
-  padding: .5rem 1rem;
-  cursor: pointer;
-  text-decoration:none;
-  margin-right:5px;
-  background-color: #0072c6;
-  color: white;
 }
 
 
-.logOut:hover {
- 
-  background-color: #ffc800; 
-  color: white;
-}

@@ -76,6 +76,7 @@ public class PassengerDB {
     }
 
     public static boolean passengerExistsByAccountNumber(String passengerAccountNumber) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 
@@ -99,6 +100,7 @@ public class PassengerDB {
     }
 
     public static boolean passengerExistsByEmail(String passengerEmail) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 

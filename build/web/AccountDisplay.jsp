@@ -12,46 +12,58 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style><%@include file="/css/default.css"%></style>
+        <style><%@include file="/css/FastPassOptions.css"%></style>
+
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Account </title>
     </head>
     <body>
         <header>
-            <a  href="/FastPass"><img src="images/SWLogo.png" width="340" height="auto" /></a>
+            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
                 <c:choose>
                     <c:when test="${passenger.authenticated}">
                     <div>
-                        <a href="AccountInfo" class="Account">Account</a>
-                        <form action="PassengerLogOut"  method="GET">
-                            <input type="submit" value="Log Out" class="logOut">
-                        </form>
+                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
+                        <a  href="PassengerLogOut" class="logout">Logout</a>
                     </div>
                 </c:when>
                 <c:otherwise >
                     <div>
-                        <a href="/FastPass/LogIn.jsp" class="SignIn">Log In</a>
-                        <a href="/FastPass/SignUp.jsp" class="SignUp">Create Account</a>
+                        <a href="LogIn.jsp" class="login">Log In</a>
+                        <a href="SignUp.jsp" class="signup">Create Account</a>
                     </div>
                 </c:otherwise>
             </c:choose>
         </header>
-
-        <c:forEach var="fastPass" items="${fastPasses}">
+        <main>
+            <p class="user-message">${userMessage}</p>
+            <h1>Fast Passes for ${passenger.firstName}</h1>
+            <div>
+                <p>Check Flight(s) Below For Details </p>
+            </div>
             <table>
                 <tr>
                     <th>FastPass Number</th>
                     <th>Flight Number</th>
                     <th>Flight Destination</th>
                     <th>Flight Destination</th>
+                    <th>Action</th>
+
                 </tr>
-                <tr>
-                    <td>SW${fastPass.fastPassVerificationNumber}</td>
-                    <td>${fastPass.flight.flightNumber}</td>
-                    <td>${fastPass.flight.departure.displayTime}</td>
-                    <td>${fastPass.flight.arrival.airport.airportIataCode}</td>
-                </tr>
-            </c:forEach>
-        </table>
+                <c:forEach var="fastPass" items="${fastPasses}">
+
+                    <tr>
+                        <td>SW${fastPass.fastPassVerificationNumber}</td>
+                        <td>${fastPass.flight.flightNumber}</td>
+                        <td>${fastPass.flight.departure.displayTime}</td>
+                        <td>${fastPass.flight.arrival.airport.airportIataCode}</td>
+                        <td>
+                            <a href="DisplayPass.jsp" class="DisplayPass">Display Pass</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </main>
     <body>
     </body>
 </html>

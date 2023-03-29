@@ -17,5 +17,11 @@
         <h2>Flight DB</h2>
         <p>getFlightByFlightId : ${getFlightByFlightId}</p>
         <p>getFlightByFlightNumber : ${getFlightByFlightNumber}</p>
+
+
+
+        <h2>CreditCard DB</h2>
+        <p>getPassengerCreditCard : ${getPassengerCreditCard}</p>
+        <p>createNewCreditCard : ${createNewCreditCard}</p>
     </body>
 </html>

@@ -1,6 +1,7 @@
 package servlets;
 
 import business.Flight;
+import business.Passenger;
 import business.Ticket;
 import database.FlightDB;
 import database.TicketDB;
@@ -36,20 +37,29 @@ public class SearchFastPassServlet extends HttpServlet {
 
         List<Flight> flights = new ArrayList<>();
 
+        Passenger passenger = (Passenger) request.getSession().getAttribute("passenger");
+
+        Ticket ticket;
+
         if (ticketNumber != null && !ticketNumber.isEmpty()) {
             try {
 
-                Ticket ticket = TicketDB.getTicketByNumber(ticketNumber);
+                ticket = TicketDB.getTicketByNumber(ticketNumber);
 
-                Flight flight = FlightDB.getFlightByFlightId(ticket.getFlightId());
+                if (ticket != null && passenger.getId() == ticket.getPassengerId()) {
+                    Flight flight = FlightDB.getFlightByFlightId(ticket.getFlightId());
 
-                flights.add(flight);
+                    flights.add(flight);
 
-                request.setAttribute("flights", flights);
-                URL = "/FastPassOptions.jsp";
+                    request.setAttribute("flights", flights);
+                    URL = "/FastPassOptions.jsp";
+
+                } else {
+                    userMessage += "Invalid Ticket Number. <br>";
+
+                }
 
             } catch (SQLException | ClassNotFoundException ex) {
-                System.err.println(ex.getMessage());
                 userMessage += "Something Went Wrong. Try again. <br>";
             }
 
@@ -91,7 +101,7 @@ public class SearchFastPassServlet extends HttpServlet {
                     URL = "/FastPassOptions.jsp";
 
                 } catch (SQLException | ClassNotFoundException ex) {
-                    System.err.println(ex.getMessage());
+
                     userMessage += "Something Went Wrong. Try again. <br>";
                 }
             }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import business.FastPass;
@@ -31,7 +27,6 @@ public class AccountInfoServlet extends HttpServlet {
 
         List<FastPass> fastPasses = null;
         Passenger passenger = (Passenger) request.getSession().getAttribute("passenger");
-
         if (passenger.getAccountNumber().equals(accountNumber)) {
             try {
                 fastPasses = FastPassDB.getFastPassesByPassengerID(passenger.getId());

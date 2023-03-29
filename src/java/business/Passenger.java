@@ -22,7 +22,7 @@ public class Passenger {
     }
 
     public boolean isAuthenticated() {
-        if (this.getPassword().length() > 0) {
+        if (this.getPassword() != null && this.getPassword().length() > 0) {
             if (this.password.equals(this.passwordAttempt)) {
                 return true;
             }

@@ -14,8 +14,7 @@
         <title>Fast Pass | Log In</title></head>
     <body>
     <header>
-        <a  href="/FastPass"><img src="images/SWLogo.png" width="340" height="auto" /></a>
-
+        <a  href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
     </header>
     <h1>Fast Pass Log In</h1>
     <main>
@@ -35,7 +34,7 @@
             <input type="submit" value="Log In">
         </form>
     </main>
-    <a href="/FastPass/SignUp.jsp">Sign Up</a>
+    <a href="SignUp.jsp">Sign Up</a>
 
 </body>
 </html>
