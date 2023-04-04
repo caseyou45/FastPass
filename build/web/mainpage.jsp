@@ -33,10 +33,12 @@
                 <h1>button or some such</h1>
                 <h1>block text</h1>
             </div>
-            
+
             <div class="availiability">
                 <br><br>
                 <a href='StartFastPass'>See Availability</a>
+                <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
+
                 <br><br><br><br>
                 <p class="user-message">${userMessage}</p>
             </div>

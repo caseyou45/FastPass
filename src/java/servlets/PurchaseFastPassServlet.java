@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import business.CreditCard;
@@ -42,11 +38,11 @@ public class PurchaseFastPassServlet extends HttpServlet {
                     userMessage += "Unable to find payment method<br>";
                 }
 
-            } catch (SQLException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 userMessage += ex.getMessage();
             }
 
-            if (creditCards != null && !creditCards.isEmpty()) {
+            if (userMessage.isEmpty()) {
 
                 List<FastPass> fastPasses = null;
 
@@ -75,8 +71,6 @@ public class PurchaseFastPassServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
         }
 
-        //if not fastpass, create
-        //if fastpass, add amount to fastpass
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -14,6 +14,8 @@ import java.sql.Statement;
 public class ArrivalDB {
 
     public static Arrival getArrivalByID(int arrivalID) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
         Arrival arrival = null;
 
         String dbURL = "jdbc:mysql://localhost:3306/fastpass2";

@@ -10,14 +10,14 @@ import java.sql.SQLException;
  */
 public class FastPassService {
 
-    public static int calculateFastPassRemainingCount(Flight flight) throws SQLException {
+    public static int calculateFastPassRemainingCount(Flight flight) throws SQLException, ClassNotFoundException {
         int maxToBeSold = (int) (flight.getFlightCapacity() * .10);
         maxToBeSold -= FastPassDB.getFastPassCountByFlight(flight.getFlightId());
 
         return maxToBeSold;
     }
 
-    public static String calculateFastPassRemainingText(Flight flight) throws SQLException {
+    public static String calculateFastPassRemainingText(Flight flight) throws SQLException, ClassNotFoundException {
 
         int cap = flight.getFlightCapacity();
 

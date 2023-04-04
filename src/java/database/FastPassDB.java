@@ -16,6 +16,7 @@ import java.util.List;
 public class FastPassDB {
 
     public static String createNewFastPass(int passengerID, int startingAmount) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
         connection.setAutoCommit(false);
@@ -41,13 +42,14 @@ public class FastPassDB {
 
     }
 
-    public static int getFastPassCountByFlight(int flightId) throws SQLException {
+    public static int getFastPassCountByFlight(int flightId) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         int count = -1;
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 
-        String query = "select count(*) from ticket where flight_id = ? and fastpass_id is not NULL;";
+        String query = "select count(*) as count from ticket where flight_id = ? and fastpass_id is not NULL;";
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -56,6 +58,7 @@ public class FastPassDB {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) {
+
             count = resultSet.getInt("count");
 
         }
@@ -68,6 +71,7 @@ public class FastPassDB {
     }
 
     public static List<FastPass> getFastPassesByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 

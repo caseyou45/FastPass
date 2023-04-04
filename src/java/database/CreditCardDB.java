@@ -42,7 +42,9 @@ public class CreditCardDB {
 
     }
 
-    public static List<CreditCard> getPassengerCreditCard(int passengerID) throws SQLException {
+    public static List<CreditCard> getPassengerCreditCard(int passengerID) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
         connection.setAutoCommit(false);
 

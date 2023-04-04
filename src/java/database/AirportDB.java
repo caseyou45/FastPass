@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class AirportDB {
 
-    public static Airport getAirportByID(int airportID) throws SQLException {
+    public static Airport getAirportByID(int airportID) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
         Airport airport = null;
 

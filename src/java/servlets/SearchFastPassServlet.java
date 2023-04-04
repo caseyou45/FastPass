@@ -60,7 +60,7 @@ public class SearchFastPassServlet extends HttpServlet {
                 }
 
             } catch (SQLException | ClassNotFoundException ex) {
-                userMessage += "Something Went Wrong. Try again. <br>";
+                userMessage += "Something Went Wrong. Try again. <br> ";
             }
 
         } else {
@@ -101,8 +101,7 @@ public class SearchFastPassServlet extends HttpServlet {
                     URL = "/FastPassOptions.jsp";
 
                 } catch (SQLException | ClassNotFoundException ex) {
-
-                    userMessage += "Something Went Wrong. Try again. <br>";
+                    userMessage += "Something Went Wrong. Try again. <br>" + ex;
                 }
             }
         }

@@ -45,18 +45,19 @@
                 <tr>
                     <th>FastPass Number</th>
                     <th>Flight Number</th>
-                    <th>Flight Destination</th>
+                    <th>Flight Departure Time</th>
                     <th>Flight Destination</th>
                     <th>Action</th>
 
                 </tr>
-                <c:forEach var="fastPass" items="${fastPasses}">
+                <c:forEach var="flightFPTicketDTO" items="${flightFPTicketDTOs}">
 
                     <tr>
-                        <td>SW${fastPass.fastPassVerificationNumber}</td>
-                        <td>${fastPass.flight.flightNumber}</td>
-                        <td>${fastPass.flight.departure.displayTime}</td>
-                        <td>${fastPass.flight.arrival.airport.airportIataCode}</td>
+                        <td>${flightFPTicketDTO.fastPassVerificationNumber}</td>
+                        <td>${flightFPTicketDTO.flight.flightNumber}</td>
+                        <td>${flightFPTicketDTO.flight.departure.displayTime}</td>
+                        <td>${flightFPTicketDTO.flight.arrival.airport.airportCity}</td>
+
                         <td>
                             <a href="DisplayPass.jsp" class="DisplayPass">Display Pass</a>
                         </td>
