@@ -70,4 +70,9 @@ public class Ticket {
         this.ticketNumber = ticketNumber;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket{" + "ticketId=" + ticketId + ", passengerId=" + passengerId + ", ticketCost=" + ticketCost + ", ticketSeat=" + ticketSeat + ", flightId=" + flightId + ", fastPassId=" + fastPassId + ", ticketNumber=" + ticketNumber + '}';
+    }
+
 }

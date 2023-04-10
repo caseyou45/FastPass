@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -70,12 +68,12 @@ public class FastPassDB {
 
     }
 
-    public static List<FastPass> getFastPassesByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
+    public static FastPass getFastPassByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
 
-        List<FastPass> fastPassList = new ArrayList<>();
+        FastPass fastPass = null;
 
         String query = "select * from fastpass f where f.passenger_id = ?";
 
@@ -85,14 +83,14 @@ public class FastPassDB {
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        while (resultSet.next()) {
-            fastPassList.add(resultSetToFastPass(resultSet));
+        if (resultSet.next()) {
+            fastPass = resultSetToFastPass(resultSet);
         }
 
         preparedStatement.close();
         connection.close();
 
-        return fastPassList;
+        return fastPass;
 
     }
 
@@ -113,6 +111,31 @@ public class FastPassDB {
         connection.close();
 
         return result > 0;
+
+    }
+
+    public static int getFastPassCountByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
+
+        FastPass fastPass = null;
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        String query = "select * from fastpass f where f.passenger_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, passengerID);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getInt("fastpass_amountleft");
+        }
+
+        preparedStatement.close();
+        connection.close();
+
+        return 0;
 
     }
 
@@ -138,6 +161,26 @@ public class FastPassDB {
         connection.close();
 
         return fastPass;
+
+    }
+
+    public static boolean connectFastPassToTicket(FastPass fastPass, int ticketID) throws SQLException {
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        String query = "Update ticket t set t.fastpass_id = ? where t.ticket_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, fastPass.getFastPassId());
+        preparedStatement.setInt(2, ticketID);
+
+        int result = preparedStatement.executeUpdate();
+
+        preparedStatement.close();
+        connection.close();
+
+        return result > 0;
 
     }
 

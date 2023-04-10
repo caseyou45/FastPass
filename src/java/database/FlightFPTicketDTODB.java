@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class FlightFPTicketDTODB {
 
-    public static List<FlightFPTicketDTO> getFlightFPTicketDTOByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
+    public static List<FlightFPTicketDTO> getListFlightFPTicketDTOByPassengerID(int passengerID) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
         Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
@@ -48,6 +48,40 @@ public class FlightFPTicketDTODB {
         connection.close();
 
         return flightFPTicketDTOList;
+
+    }
+
+    public static FlightFPTicketDTO getOneFlightFPTicketDTOByPassengerID(int passengerID, String fastpassVerificationNumber, String ticketNumber) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        FlightFPTicketDTO flightFPTicketDTO = null;
+
+        String query = "Select t.ticket_seat, t.ticket_number, fp.fastpass_verification_number, fl.flight_id from ticket t join flight fl on t.flight_id = fl.flight_id join fastpass fp "
+                + "on fp.fastpass_id = t.fastpass_id where t.passenger_id = ? and fp.fastpass_verification_number = ? and t.ticket_number = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, passengerID);
+        preparedStatement.setString(2, fastpassVerificationNumber);
+        preparedStatement.setString(3, ticketNumber);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            flightFPTicketDTO = new FlightFPTicketDTO();
+            flightFPTicketDTO.setTicketNumber(resultSet.getString("ticket_seat"));
+            flightFPTicketDTO.setTicketNumber(resultSet.getString("ticket_number"));
+            flightFPTicketDTO.setFastPassVerificationNumber(resultSet.getString("fastpass_verification_number"));
+            flightFPTicketDTO.setFlight(FlightDB.getFlightByFlightId(resultSet.getInt("flight_id")));
+
+        }
+
+        preparedStatement.close();
+        connection.close();
+
+        return flightFPTicketDTO;
 
     }
 }

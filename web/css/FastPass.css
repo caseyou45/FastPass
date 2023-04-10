@@ -1,0 +1,84 @@
+
+
+
+section {
+  color:white;
+  min-width:100%;
+  display:flex;
+  flex-direction: col;
+  justify-content: center;
+  
+}
+
+
+.fastpass{
+  background-color:var(--swa-blue);
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,.5);
+  border-radius:10px;
+  height:500px;
+  width:300px;
+  
+   
+}
+
+.fastpass h1{
+  text-align:center;
+  font-size:30px;   
+  color:white;
+
+}
+
+
+.cities {
+  font-size:10px;
+  color:var(--swa-yellow);
+    
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+   
+  width:90%;
+  margin:auto;
+}
+
+.airports {
+  font-size:28px;
+    
+  display:flex;
+  flex-direction:row;
+  justify-content:space-between;
+  width:90%;
+  margin:auto;
+  
+}
+
+
+.passenger{
+  margin-top:30px;
+  height:30px;
+  font-size:20px;
+  
+  width:90%;
+  margin:5rem auto;
+}
+
+.passenger span:first-of-type{
+  font-size:12px;
+  color:var(--swa-yellow);
+
+}
+
+.qr{
+  width:90%;
+  margin:auto;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.qr img{
+    width: 150px;
+    box-shadow: 0px 2px 2px 0px rgba(0,0,0,.2);
+}

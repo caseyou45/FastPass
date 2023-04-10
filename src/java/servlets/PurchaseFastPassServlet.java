@@ -44,16 +44,16 @@ public class PurchaseFastPassServlet extends HttpServlet {
 
             if (userMessage.isEmpty()) {
 
-                List<FastPass> fastPasses = null;
+                FastPass fastPass = null;
 
                 try {
-                    fastPasses = FastPassDB.getFastPassesByPassengerID(passenger.getId());
+                    fastPass = FastPassDB.getFastPassByPassengerID(passenger.getId());
 
-                    if (fastPasses.isEmpty()) {
+                    if (fastPass == null) {
                         String fastPassVerifcationNumber = FastPassDB.createNewFastPass(passenger.getId(), 3);
-                        fastPasses.add(FastPassDB.getFastPassByVerificationNumber(fastPassVerifcationNumber));
+                        fastPass = FastPassDB.getFastPassByVerificationNumber(fastPassVerifcationNumber);
                     } else {
-                        FastPassDB.updateFastPassAmountLeft(fastPasses.get(0), fastPasses.get(0).getFastPassAmountLeft() + 3);
+                        FastPassDB.updateFastPassAmountLeft(fastPass, fastPass.getFastPassAmountLeft() + 3);
                     }
 
                     URL = "/FastPassStart.jsp";

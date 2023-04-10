@@ -72,5 +72,23 @@
                 </div>
                 </main>
             </form>
+
+
+            <script>
+                document.getElementById('date').valueAsDate = new Date();
+                const aiportOption = document.getElementById('airport-select');
+
+                fetch("/AllAirports").then(response => response.json())
+                        .then(airports => {
+
+                            for (const airport of airports) {
+                                let opt = document.createElement('option');
+                                opt.value = airport.airportCode;
+                                opt.innerHTML = airport.airportName + " (" + airport.airportCode + ")";
+                                aiportOption.appendChild(opt);
+                            }
+                        });
+
+            </script>
     </body>
 </html>

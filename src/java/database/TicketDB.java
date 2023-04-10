@@ -48,6 +48,41 @@ public class TicketDB {
         return ticket;
     }
 
+    public static Ticket getTicketByFlightAndPassenger(int passengerID, int flightID) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        Ticket ticket = null;
+
+        Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+
+        String query = "select * from ticket t where t.passenger_id = ? and t.flight_id = ?";
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setInt(1, passengerID);
+        preparedStatement.setInt(2, flightID);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            ticket = new Ticket();
+            ticket.setTicketId(resultSet.getInt("ticket_id"));
+            ticket.setPassengerId(resultSet.getInt("passenger_id"));
+            ticket.setTicketCost(resultSet.getDouble("ticket_cost"));
+            ticket.setTicketSeat(resultSet.getString("ticket_seat"));
+            ticket.setFlightId(resultSet.getInt("flight_id"));
+            ticket.setFastPassId(resultSet.getInt("fastpass_id"));
+            ticket.setTicketNumber(resultSet.getString("ticket_number"));
+
+        }
+
+        preparedStatement.close();
+        connection.close();
+
+        return ticket;
+
+    }
+
     public static Ticket getTicketByID(int ticketID) throws SQLException, ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -114,4 +149,5 @@ public class TicketDB {
 
         return tickets;
     }
+
 }

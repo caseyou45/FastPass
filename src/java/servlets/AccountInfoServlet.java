@@ -1,6 +1,7 @@
 package servlets;
 
 import business.Passenger;
+import database.FastPassDB;
 import database.FlightFPTicketDTODB;
 import dto.FlightFPTicketDTO;
 import jakarta.servlet.RequestDispatcher;
@@ -24,13 +25,21 @@ public class AccountInfoServlet extends HttpServlet {
 
         String accountNumber = request.getParameter("accountNumber").trim();
         String userMessage = "";
+        String URL = "/AccountDisplay.jsp";
 
         List<FlightFPTicketDTO> flightFPTicketDTOs = null;
         Passenger passenger = (Passenger) request.getSession().getAttribute("passenger");
+
         if (passenger.getAccountNumber().equals(accountNumber)) {
             try {
 
-                flightFPTicketDTOs = FlightFPTicketDTODB.getFlightFPTicketDTOByPassengerID(passenger.getId());
+                flightFPTicketDTOs = FlightFPTicketDTODB.getListFlightFPTicketDTOByPassengerID(passenger.getId());
+
+                request.setAttribute("flightFPTicketDTOs", flightFPTicketDTOs);
+
+                int count = FastPassDB.getFastPassCountByPassengerID(passenger.getId());
+
+                request.setAttribute("fastPassCount", count);
 
             } catch (SQLException | ClassNotFoundException ex) {
                 userMessage += "Error: " + ex.getMessage();
@@ -41,10 +50,9 @@ public class AccountInfoServlet extends HttpServlet {
 
         }
 
-        request.setAttribute("flightFPTicketDTOs", flightFPTicketDTOs);
         request.setAttribute("userMessage", userMessage);
 
-        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/AccountDisplay.jsp");
+        RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(URL);
 
         requestDispatcher.forward(request, response);
 

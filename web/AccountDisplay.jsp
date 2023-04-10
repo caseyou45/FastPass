@@ -37,7 +37,10 @@
         </header>
         <main>
             <p class="user-message">${userMessage}</p>
-            <h1>Fast Passes for ${passenger.firstName}</h1>
+            <h1>Actives Passes for ${passenger.firstName}</h1>
+            <p>Unused FastPasses Left: ${fastPassCount}</p>
+            <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
+
             <div>
                 <p>Check Flight(s) Below For Details </p>
             </div>
@@ -57,9 +60,9 @@
                         <td>${flightFPTicketDTO.flight.flightNumber}</td>
                         <td>${flightFPTicketDTO.flight.departure.displayTime}</td>
                         <td>${flightFPTicketDTO.flight.arrival.airport.airportCity}</td>
-
                         <td>
-                            <a href="DisplayPass.jsp" class="DisplayPass">Display Pass</a>
+                            <a
+                                href="DisplayFastPass?fastPassVerificationNumber=${flightFPTicketDTO.fastPassVerificationNumber}&ticketNumber=${flightFPTicketDTO.ticketNumber}" class="DisplayPass">Display Pass</a>
                         </td>
                     </tr>
                 </c:forEach>

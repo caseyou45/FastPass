@@ -3,6 +3,7 @@ package servlets;
 import business.Flight;
 import business.Passenger;
 import business.Ticket;
+import database.FastPassDB;
 import database.FlightDB;
 import database.TicketDB;
 import jakarta.servlet.RequestDispatcher;
@@ -47,11 +48,16 @@ public class SearchFastPassServlet extends HttpServlet {
                 ticket = TicketDB.getTicketByNumber(ticketNumber);
 
                 if (ticket != null && passenger.getId() == ticket.getPassengerId()) {
+
                     Flight flight = FlightDB.getFlightByFlightId(ticket.getFlightId());
 
                     flights.add(flight);
 
-                    request.setAttribute("flights", flights);
+                    int count = FastPassDB.getFastPassCountByPassengerID(passenger.getId());
+
+                    request.getSession().setAttribute("fastPassCount", count);
+                    request.getSession().setAttribute("flights", flights);
+
                     URL = "/FastPassOptions.jsp";
 
                 } else {
@@ -97,6 +103,11 @@ public class SearchFastPassServlet extends HttpServlet {
                     flights = FlightDB.getByFlightNumAndDateAndDepAir(date, airportCode, flightNumber);
 
                     request.setAttribute("flights", flights);
+
+                    if (passenger != null) {
+                        int count = FastPassDB.getFastPassCountByPassengerID(passenger.getId());
+                        request.setAttribute("fastPassCount", count);
+                    }
 
                     URL = "/FastPassOptions.jsp";
 

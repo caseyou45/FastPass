@@ -78,6 +78,24 @@ public class Passenger {
         this.middleName = middleName;
     }
 
+    public String getFullName() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.firstName);
+
+        if (!this.middleName.isEmpty()) {
+            stringBuilder.append(" ");
+            stringBuilder.append(String.valueOf(this.middleName.charAt(0)));
+        }
+
+        if (!this.lastName.isEmpty()) {
+            stringBuilder.append(" ");
+            stringBuilder.append(this.lastName);
+        }
+
+        return stringBuilder.toString();
+
+    }
+
     public Date getDob() {
         return dob;
     }

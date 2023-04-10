@@ -29,9 +29,8 @@
         <article>
             <div class="bannertext">
                 <h1>Skip the Headache</h1>
-                <h1>m,ore text</h1>
-                <h1>button or some such</h1>
-                <h1>block text</h1>
+                <h1>The line</h1>
+                <h1>And the hassle</h1>
             </div>
 
             <div class="availiability">

@@ -26,18 +26,15 @@ public class FastPassService {
         int low = (int) (cap * .5);
 
         String text = "";
-
         int actual = max - FastPassDB.getFastPassCountByFlight(flight.getFlightId());
 
         if (actual > low) {
-            text = "Limited";
+            return "Limited";
         } else if (actual > mid) {
-            text = "Some";
-        } else {
-            text = "Many";
+            return "Some";
         }
 
-        return text;
+        return "Many";
 
     }
 }
