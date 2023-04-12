@@ -50,12 +50,10 @@ public class ConnectFastPassServlet extends HttpServlet {
 
                         Ticket ticket = TicketDB.getTicketByFlightAndPassenger(passenger.getId(), flightIDINT);
 
-                        if (ticket != null) {
+                        if (ticket != null && ticket.getPassengerId() == passenger.getId()) {
 
                             if (ticket.getFastPassId() == 0) {
                                 boolean success = FastPassDB.connectFastPassToTicket(fastPass, ticket.getTicketId());
-
-                                request.getSession().setAttribute("", URL);
 
                                 if (success) {
 
@@ -65,7 +63,7 @@ public class ConnectFastPassServlet extends HttpServlet {
                                     request.getSession().setAttribute("fastPassCount", fastPass.getFastPassAmountLeft() - 1);
 
                                 } else {
-                                    userMessage = "Nope";
+                                    userMessage = "Something went wrong. Try again later";
                                 }
 
                             } else {

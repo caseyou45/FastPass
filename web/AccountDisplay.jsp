@@ -40,6 +40,7 @@
             <h1>Actives Passes for ${passenger.firstName}</h1>
             <p>Unused FastPasses Left: ${fastPassCount}</p>
             <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
+            <a href='FastPassStart.jsp'>Connect FastPass</a>
 
             <div>
                 <p>Check Flight(s) Below For Details </p>
