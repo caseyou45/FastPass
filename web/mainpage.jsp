@@ -1,5 +1,5 @@
 <!-- author: Regina -->
-
+<!-- art pass: john -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
@@ -9,37 +9,49 @@
         <meta charset="UTF-8">
         <title>Southwest Airlines | Fast Pass</title>
         <style><%@include file="/css/mainPage.css"%></style>
+        <style><%@include file="/css/header.css"%></style>
+        <style><%@include file="/css/shared_ui.css"%></style>
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
 
     </head>
 
 
     <body>
-        <header>
+        <header class="anim">
             <div class="header_useracc">
+                <!--these have to be in reverse order i dont really know why but it works - john -->
+                <a href='SignUp.jsp' class="CreateAccount">Create account</a>
                 <form action="LogIn.jsp" method="post">
-                    <button type="submit" class="LogInEnroll" value="logIn"> Log In/Enroll</button>
+                    <button type="submit" class="LogInEnroll" value="logIn">
+                        <img src="images/login_icon.png" height="15" width="auto">
+                        <span> Log In</span>
+                    </button>
                 </form>
+                <span class="LogInTip">Log in to purchase fast pass</span>
             </div>
             <img src="images/swa_logo_dark.svg" class="header_logo"/>
         </header>
 
 
-        <div class="banner"></div>
+        <div class="banner"><div></div></div>
         <article>
             <div class="bannertext">
-                <h1>Skip the Headache</h1>
-                <h1>The line</h1>
-                <h1>And the hassle</h1>
+                <p>Travel plans?</p>
+                <h1>Skip the line.</h1>
+                <div><form action="PurchaseFastPass.jsp" method="post">
+                    <button type="submit" class="ActionablePrimary" value="learnmore">
+                        <span>Learn More</span>
+                    </button>
+                </form></div>
             </div>
-
-            <div class="availiability">
-                <br><br>
-                <a href='StartFastPass'>See Availability</a>
-                <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
-
-                <br><br><br><br>
-                <p class="user-message">${userMessage}</p>
+            <div class="contentMain">
+                <div class="availiability">
+                    <br><br>
+                    <a href='StartFastPass'>See Availability</a>
+                    <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
+                    <br><br><br><br>
+                    <p class="user-message">${userMessage}</p>
+                </div>
             </div>
         </article>
 

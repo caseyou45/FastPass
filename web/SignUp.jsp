@@ -10,13 +10,23 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style><%@include file="/css/SignUp.css"%></style>
+        <style><%@include file="/css/header.css"%></style>
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Sign Up</title>
     </head>
     <body>
-    <header>
-        <a  href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
-    </header>
+        <header>
+            <div class="header_useracc">
+                <!--these have to be in reverse order i dont really know why but it works - john -->
+                <form action="LogIn.jsp" method="post">
+                    <button type="submit" class="LogInEnroll" value="logIn">
+                        <img src="images/login_icon.png" height="15" width="auto">
+                        <span> Log In</span>
+                    </button>
+                </form>
+            </div>
+            <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
+        </header>
     <h1>Fast Pass Sign Up</h1>
 
     <main>

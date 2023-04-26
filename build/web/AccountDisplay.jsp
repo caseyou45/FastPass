@@ -2,6 +2,8 @@
     Document   : AccountInfo
     Created on : Mar 13, 2023, 4:38:28 PM
     Author     : CWilson
+
+    additional art pass: john
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,27 +15,36 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style><%@include file="/css/default.css"%></style>
         <style><%@include file="/css/FastPassOptions.css"%></style>
+        <style><%@include file="/css/header.css"%></style>
 
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Account </title>
     </head>
     <body>
         <header>
-            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
-                <c:choose>
-                    <c:when test="${passenger.authenticated}">
+            <c:choose>
+                <c:when test="${passenger.authenticated}">
                     <div>
+                        <!-- TODO!! -->
                         <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
                         <a  href="PassengerLogOut" class="logout">Logout</a>
                     </div>
                 </c:when>
                 <c:otherwise >
-                    <div>
-                        <a href="LogIn.jsp" class="login">Log In</a>
-                        <a href="SignUp.jsp" class="signup">Create Account</a>
+                    <div class="header_useracc">
+                        <!--these have to be in reverse order i dont really know why but it works - john -->
+                        <a href='SignUp.jsp' class="CreateAccount">Create account</a>
+                        <form action="LogIn.jsp" method="post">
+                            <button type="submit" class="LogInEnroll" value="logIn">
+                                <img src="images/login_icon.png" height="15" width="auto">
+                                <span> Log In</span>
+                            </button>
+                        </form>
+                        <span class="LogInTip">Log in to purchase fast pass</span>
                     </div>
                 </c:otherwise>
             </c:choose>
+            <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
         </header>
         <main>
             <p class="user-message">${userMessage}</p>
