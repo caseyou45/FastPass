@@ -16,7 +16,12 @@ public class CreditCardEntry {
         ccNumber = request.getParameter("ccNumber");
 
         if (!ccNumber.isEmpty()) {
-            creditCard.setCcNumber(ccNumber);
+            if (checkCreditCardAgainstLuhn(ccNumber)) {
+                creditCard.setCcNumber(ccNumber);
+            } else {
+                userMessage += "Credit Card Number is Invalid <br>";
+            }
+
         } else {
             userMessage += "Credit Card Number is missing <br>";
         }
@@ -62,6 +67,29 @@ public class CreditCardEntry {
         }
 
         return userMessage;
+    }
+
+    private static boolean checkCreditCardAgainstLuhn(String cardNumber) {
+        int nDigits = cardNumber.length();
+
+        int nSum = 0;
+        boolean isSecond = false;
+        for (int i = nDigits - 1; i >= 0; i--) {
+
+            int d = cardNumber.charAt(i) - '0';
+
+            if (d > -1) {
+                if (isSecond == true) {
+                    d = d * 2;
+                }
+
+                nSum += d / 10;
+                nSum += d % 10;
+
+                isSecond = !isSecond;
+            }
+        }
+        return (nSum % 10 == 0);
     }
 
 }

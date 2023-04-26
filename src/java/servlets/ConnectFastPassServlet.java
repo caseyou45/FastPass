@@ -72,7 +72,7 @@ public class ConnectFastPassServlet extends HttpServlet {
                             }
 
                         } else {
-                            userMessage = "No Ticket Found";
+                            userMessage = "No ticket for passenger found  on flight";
 
                         }
 

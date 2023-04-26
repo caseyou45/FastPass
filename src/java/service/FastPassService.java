@@ -22,8 +22,8 @@ public class FastPassService {
         int cap = flight.getFlightCapacity();
 
         int max = (int) (cap * .10);
-        int mid = (int) (cap * .5);
-        int low = (int) (cap * .5);
+        int mid = (int) (cap * .05);
+        int low = (int) (cap * .05);
 
         String text = "";
         int actual = max - FastPassDB.getFastPassCountByFlight(flight.getFlightId());

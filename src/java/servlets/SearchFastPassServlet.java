@@ -93,28 +93,38 @@ public class SearchFastPassServlet extends HttpServlet {
             }
 
             if (!flightNumber.isEmpty() && !flightNumber.matches("[0-9]+")) {
-                userMessage += "That Flight Number Doesn't Look Right. Try Again. <br>";
+                userMessage += "That Flight Number Doesn't Look Right. Enter in numbers only <br>";
             }
 
             if (!userMessage.isEmpty()) {
                 userMessage = "Error: <br>" + userMessage;
             } else {
                 try {
+
                     flights = FlightDB.getByFlightNumAndDateAndDepAir(date, airportCode, flightNumber);
 
-                    request.setAttribute("flights", flights);
+                    if (!flights.isEmpty()) {
+                        request.setAttribute("flights", flights);
 
-                    if (passenger != null) {
-                        int count = FastPassDB.getFastPassCountByPassengerID(passenger.getId());
-                        request.setAttribute("fastPassCount", count);
+                        if (passenger != null) {
+
+                            int count = FastPassDB.getFastPassCountByPassengerID(passenger.getId());
+
+                            request.setAttribute("fastPassCount", count);
+
+                        }
+                    } else {
+                        userMessage += "No Flights Found with Information Provided";
                     }
-
-                    URL = "/FastPassOptions.jsp";
 
                 } catch (SQLException | ClassNotFoundException ex) {
                     userMessage += "Something Went Wrong. Try again. <br>" + ex;
                 }
             }
+        }
+
+        if (userMessage.isBlank()) {
+            URL = "/FastPassOptions.jsp";
         }
 
         request.setAttribute("userMessage", userMessage);

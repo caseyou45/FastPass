@@ -42,7 +42,7 @@ public class DisplayFastPassServlet extends HttpServlet {
         FlightFPTicketDTO flightFPTicketDTO = null;
         Passenger passenger = (Passenger) request.getSession().getAttribute("passenger");
 
-        if (!fastPassVerificationNumber.isEmpty() && passenger != null) {
+        if (!fastPassVerificationNumber.isEmpty() && passenger != null && !ticketNumber.isEmpty()) {
             try {
 
                 flightFPTicketDTO = FlightFPTicketDTODB.getOneFlightFPTicketDTOByPassengerID(passenger.getId(), fastPassVerificationNumber, ticketNumber);

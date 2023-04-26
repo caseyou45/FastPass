@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,6 +17,23 @@
         <title>FastPass</title>
     </head>
     <body>
+        <header>
+            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
+            <c:choose>
+                <c:when test="${passenger.authenticated}">
+                    <div>
+                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
+                        <a  href="PassengerLogOut" class="logout">Logout</a>
+                    </div>
+                </c:when>
+                <c:otherwise >
+                    <div>
+                        <a href="LogIn.jsp" class="login">Log In</a>
+                        <a href="SignUp.jsp" class="signup">Create Account</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </header>
         <section>
             <div class="fastpass">
                 <h1>Southwest FastPass</h1>

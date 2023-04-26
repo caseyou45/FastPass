@@ -34,11 +34,16 @@
         <main>
             <p class="user-message">${userMessage}</p>
 
-            <h1>Buy Fast Pass Now 3 for $100</h1>
+            <h1>Buy Fast Pass Now 3 for $100 or 1 for $40</h1>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
                     <div>
                         <form action="PurchaseFastPass"  method="POST">
+                            <select  name="amount-select" id="amount-select">
+                                <option value="">Select an Amount:</option>
+                                <option  value="1">1 for $40</option>
+                                <option  value="3">3 for $100</option>
+                            </select>
                             <input type="submit" value="Purchase">
                         </form>
                     </div>

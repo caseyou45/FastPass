@@ -28,6 +28,8 @@ public class PurchaseFastPassServlet extends HttpServlet {
         String userMessage = "";
         String URL = "/PurchaseFastPass.jsp";
 
+        String fastPassAmount = request.getParameter("amount-select");
+
         if (passenger.isAuthenticated()) {
             List<CreditCard> creditCards = null;
 
@@ -42,7 +44,13 @@ public class PurchaseFastPassServlet extends HttpServlet {
                 userMessage += ex.getMessage();
             }
 
+            if (fastPassAmount.isEmpty() || fastPassAmount == null) {
+                userMessage += "Choose a selection below";
+            }
+
             if (userMessage.isEmpty()) {
+
+                int fastPassAmountINT = Integer.valueOf(fastPassAmount);
 
                 FastPass fastPass = null;
 
@@ -50,10 +58,10 @@ public class PurchaseFastPassServlet extends HttpServlet {
                     fastPass = FastPassDB.getFastPassByPassengerID(passenger.getId());
 
                     if (fastPass == null) {
-                        String fastPassVerifcationNumber = FastPassDB.createNewFastPass(passenger.getId(), 3);
+                        String fastPassVerifcationNumber = FastPassDB.createNewFastPass(passenger.getId(), fastPassAmountINT);
                         fastPass = FastPassDB.getFastPassByVerificationNumber(fastPassVerifcationNumber);
                     } else {
-                        FastPassDB.updateFastPassAmountLeft(fastPass, fastPass.getFastPassAmountLeft() + 3);
+                        FastPassDB.updateFastPassAmountLeft(fastPass, fastPass.getFastPassAmountLeft() + fastPassAmountINT);
                     }
 
                     URL = "/FastPassStart.jsp";

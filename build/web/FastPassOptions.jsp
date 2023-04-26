@@ -16,27 +16,27 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Availability</title>
     </head>
-    <header>
-        <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
-            <c:choose>
-                <c:when test="${passenger.authenticated}">
-                <div>
-                    <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                    <a  href="PassengerLogOut" class="logout">Logout</a>
-                </div>
-            </c:when>
-            <c:otherwise >
-                <div>
-                    <a href="LogIn.jsp" class="login">Log In</a>
-                    <a href="SignUp.jsp" class="signup">Create Account</a>
-                </div>
-            </c:otherwise>
-        </c:choose>
-    </header>
-    <main>
-        <p class="user-message">${userMessage}</p>
-        <h1>Fast Pass Availability</h1>
-        <body>
+    <body>
+        <header>
+            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
+                <c:choose>
+                    <c:when test="${passenger.authenticated}">
+                    <div>
+                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
+                        <a  href="PassengerLogOut" class="logout">Logout</a>
+                    </div>
+                </c:when>
+                <c:otherwise >
+                    <div>
+                        <a href="LogIn.jsp" class="login">Log In</a>
+                        <a href="SignUp.jsp" class="signup">Create Account</a>
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </header>
+        <main>
+            <p class="user-message">${userMessage}</p>
+            <h1>Fast Pass Availability</h1>
             <c:if test="${passenger.authenticated}">
                 <p>
                     FastPasses available for ${passenger.fullName}: ${fastPassCount}
@@ -79,6 +79,6 @@
                     </tr>
                 </c:forEach>
             </table>
-    </main>
-</body>
+        </main>
+    </body>
 </html>
