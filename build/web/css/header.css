@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "Southwest sans";
+    src: url("fonts/SouthwestSans-Regular.otf") format("opentype");
+}
+@font-face {
+    font-family: "Southwest sans Bold";
+    src: url("fonts/SouthwestSans-Bold.otf") format("opentype");
+}
+
+@keyframes introSlideFromTop {
+    0% {
+        transform: translateY(-75%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+html, button {
+	font-family: Southwest sans, Arial, sans-serif;
+}
+
+.LogInEnroll {
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 20px;
+  cursor: pointer;
+  float:right;
+}
+
+button.LogInEnroll {
+  background-color: #ffbf27;
+  color: #111b40;
+  transition: background-color .3s ease-out,background .3s ease-out,border .3s ease-out,box-shadow .3s ease-out,color .3s ease-out,opacity .3s ease-out;
+  padding: 0 20px 1px;
+  min-height: 32px;
+  display: inline-block;
+  box-shadow: 0 1px #8f8f8f;
+  border-radius: 2px;
+  border: 1px solid #ffbf27;
+  font: bold 12px/14px Arial;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+button.LogInEnroll:hover, button.LogInEnroll:focus {
+  border-color: #111b40;
+  box-shadow: none;
+  color: #111b40;
+}
+button.LogInEnroll:active {
+  box-shadow: 0 2px #8f8f8f inset;
+}
+button.LogInEnroll > img {
+  position: relative;
+  top:1px;
+}
+button.LogInEnroll > span {
+  position: relative;
+  top:-3px;
+}
+
+a.CreateAccount {
+  font: bold 12px/14px Arial;
+  color: #304cb2;
+  cursor: pointer;
+  float:right;
+  text-align: center;
+  line-height: 32px;
+  text-decoration: none;
+}
+a.CreateAccount:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+a.CreateAccount:hover {
+  text-decoration: underline;
+}
+span.LogInTip {
+  font: 12px/14px Arial;
+  color: #304cb2;
+  float:right;
+  text-align: right;
+  line-height: 32px;
+  text-decoration: none;
+  font-style: italic;
+}
+
+body {
+    margin: 8px;
+}
+
+header {
+    max-width: 937px;
+    margin: auto;
+    display: block; width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+header.anim {
+    animation: 0.7s ease 0s 1 introSlideFromTop;
+}
+
+header.anim > img {
+    animation: 0.9s ease 0s 1 introSlideFromTop;
+}
+
+div.header_useracc {
+    height: 36px;
+}
