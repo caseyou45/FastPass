@@ -30,7 +30,7 @@
                             ACCOUNT EMAIL ADDRESS
                         </span>
                         <div>
-                            <input type="text" name="passengerEmail" id="passengerEmail" value="SophroniaWitherspoon@mail.com">
+                            <input type="text" name="passengerEmail" id="passengerEmail">
                         </div>
                     </label>
                 </div>
@@ -40,7 +40,7 @@
                             PASSWORD
                         </span>
                         <div>
-                            <input type="password" name="passengerPassword" id="passengerPassword" value="witherspoon">
+                            <input type="password" name="passengerPassword" id="passengerPassword">
                         </div>
                     </label>
                 </div>

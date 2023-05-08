@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style><%@include file="/css/SignUp.css"%></style>
         <style><%@include file="/css/header.css"%></style>
+        <style><%@include file="/css/shared_ui.css"%></style>
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Sign Up</title>
     </head>
@@ -27,29 +28,30 @@
             </div>
             <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
         </header>
-    <h1>Fast Pass Sign Up</h1>
 
-    <main>
+    <main><div class="mainContentTrim">
         <p class="user-message">${userMessage}</p>
 
         <form action="PassengerSignUp" method="post">
             <section class="inputBox">
-
+                <div class="form-row">
+                    <h1 class="formHeading" style="margin-bottom: -0.8rem;">Create Account</h1>
+                </div>
                 <div class="form-row">
                     <div>
-                        <label>First Name</label> <input type="text"
+                        <label for="passengerFirstName">First Name</label> <input type="text"
                                                          name="passengerFirstName" id="passengerFirstName"  value="${passenger.firstName}">
                     </div>
 
 
                     <div>
-                        <label>Middle Name</label> <input type="text"
+                        <label for="passengerMiddleName">Middle Name</label> <input type="text"
                                                           name="passengerMiddleName" id="passengerMiddleName" value="${passenger.middleName}">
                     </div>
 
 
                     <div>
-                        <label>Last Name</label> <input type="text" name="passengerLastName"
+                        <label for="passengerLastName">Last Name</label> <input type="text" name="passengerLastName"
                                                         id="passengerLastName" value="${passenger.lastName}">
                     </div>
 
@@ -58,18 +60,18 @@
                 <div class="form-row">
 
                     <div>
-                        <label>Email</label> <input type="text" name="passengerEmail"
+                        <label for="passengerEmail">Email</label> <input type="text" name="passengerEmail"
                                                     id="passengerEmail" value="${passenger.email}">
                     </div>
 
 
                     <div>
-                        <label>Password</label> <input type="password"
+                        <label for="passengerPassword">Password</label> <input type="password"
                                                        name="passengerPassword" id="passengerPassword">
                     </div>
 
                     <div>
-                        <label>Retype Password</label> <input type="password"
+                        <label for="passengerPasswordRETYPE">Retype Password</label> <input type="password"
                                                               name="passengerPasswordRETYPE" id="passengerPasswordRETYPE">
                     </div>
 
@@ -77,8 +79,8 @@
 
                 <div class="form-row">
                     <div>
-                        <label>DOB</label> <input type="text" name="passengerDob"
-                                                  id="passengerDob" placeholder="YYYY/MM/DD" value="${passenger.displayDob}">
+                        <label for="passengerDob">Date of Birth</label>
+                        <input id="passengerDob" name="passengerDob" type="date" value="${passenger.displayDob}" />
                     </div>
                 </div>
             </section>
@@ -86,7 +88,7 @@
             <section class="inputBox">
                 <div class="form-row">
                     <div>
-                        <label>Card Type</label>
+                        <label for="ccType">Card Type</label>
                         <select id="ccType" name="ccType" >
                             <option value="" selected="${creditCard.ccType == ""}">--Select--</option>
                             <option value="AmericanExpress" ${creditCard.ccType == "AmericanExpress" ? "selected" : ""} >American Express</option>
@@ -96,7 +98,7 @@
                         </select>
                     </div>
                     <div>
-                        <label>Credit Card #</label>
+                        <label for="ccNumber">Credit Card #</label>
                         <input id="ccNumber" name="ccNumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}"
                                autocomplete="cc-number"
                                maxlength="19" placeholder="xxxx xxxx xxxx xxxx"
@@ -104,35 +106,35 @@
                     </div>
 
                     <div>
-                        <label>Expiration Date</label> <input type="text" name="ccExpiration" id="ccExpiration" placeholder="MM/YYYY"  value="${creditCard.ccExpiration}">
+                        <label for="ccExpiration">Expiration Date</label> <input type="text" name="ccExpiration" id="ccExpiration" placeholder="MM/YYYY"  value="${creditCard.ccExpiration}">
                     </div>
 
                 </div>
                 <div class="form-row">
                     <div>
-                        <label>First Name on Card</label> <input type="text"
+                        <label for="ccFirstname">First Name on Card</label> <input type="text"
                                                                  name="ccFirstname" id="ccFirstname"  value="${creditCard.ccFirstname}">
                     </div>
 
                     <div>
-                        <label>Last Name on Card</label> <input type="text" name="ccLastname" id="ccLastname" value="${creditCard.ccLastname}">
+                        <label for="ccLastname">Last Name on Card</label> <input type="text" name="ccLastname" id="ccLastname" value="${creditCard.ccLastname}">
                     </div>
                     <div>
-                        <label>CVV</label> <input type="text" name="ccCvv" id="ccCvv" maxlength="3" placeholder="xxx"  value="${creditCard.ccCvv}" >
+                        <label for="ccCvv">CVV</label> <input type="text" name="ccCvv" id="ccCvv" maxlength="3" placeholder="xxx"  value="${creditCard.ccCvv}" >
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row" style="gap: 8px; margin-top: -0.8rem;">
                     <div>
-                        <input type="submit" value="Sign Up">
+                        <button type="submit" class="ActionablePrimary" value="Sign Up" style="margin-left: 2px; width: 200px; height: 35px;">Create Account</button>
                     </div>
                     <div >
-                        <a href="LogIn.jsp">Log In</a>
+                        <a href="LogIn.jsp" class="loginlink">Log In</a>
                     </div>
                 </div>
             </section>
 
 
         </form>
-    </main>
+    </div></main>
 </body>
 </html>

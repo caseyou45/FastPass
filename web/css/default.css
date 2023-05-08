@@ -28,21 +28,8 @@ html, button {
 
 
 html, body {
-	height:100%;
 	margin:0;
 	padding:0;
-	width:100%;
-	
-}
-
-
-
-
-body {
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-
 }
 
 
@@ -76,10 +63,6 @@ label{
 main form {
 	background-color: #fff;
 	padding:2%;
-	display:flex;
-	flex-direction:column;
-	align-items:left;
-	gap:2rem;
 }
 
 main input {
