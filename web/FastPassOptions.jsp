@@ -16,40 +16,22 @@
         <style><%@include file="/css/FastPassOptions.css"%></style>
         <style><%@include file="/css/mainPage.css"%></style>
         <style><%@include file="/css/header.css"%></style>
-
+        <style><%@include file="/css/shared_ui.css"%></style>
+        
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Availability</title>
     </head>
-<<<<<<< HEAD
-    <body>
-        <header>
-            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
-                <c:choose>
-                    <c:when test="${passenger.authenticated}">
-                    <div>
-                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                        <a  href="PassengerLogOut" class="logout">Logout</a>
-                    </div>
-                </c:when>
-                <c:otherwise >
-                    <div>
-                        <a href="LogIn.jsp" class="login">Log In</a>
-                        <a href="SignUp.jsp" class="signup">Create Account</a>
-                    </div>
-                </c:otherwise>
-            </c:choose>
-        </header>
-        <main>
-            <p class="user-message">${userMessage}</p>
-            <h1>Fast Pass Availability</h1>
-=======
     <header>
         <c:choose>
             <c:when test="${passenger.authenticated}">
-                <div>
-                    <!-- TODO!! -->
-                    <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                    <a  href="PassengerLogOut" class="logout">Logout</a>
+                <div class="header_useracc">
+                    <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                    <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
+                        <button type="submit" class="LogInEnroll" value="account">
+                            <img src="images/login_icon.png" height="15" width="auto">
+                            <span> Account</span>
+                        </button>
+                    </form>
                 </div>
             </c:when>
             <c:otherwise >
@@ -68,11 +50,10 @@
         </c:choose>
         <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
     </header>
-    <main>
+    <main><div class="mainContentTrim">
         <p class="user-message">${userMessage}</p>
         <h1>Fast Pass Availability</h1>
         <body>
->>>>>>> 26d90f145081fe3c333ef1e69a27a42b8367148a
             <c:if test="${passenger.authenticated}">
                 <p>
                     FastPasses available for ${passenger.fullName}: ${fastPassCount}
@@ -115,6 +96,6 @@
                     </tr>
                 </c:forEach>
             </table>
-        </main>
+        </div></main>
     </body>
 </html>

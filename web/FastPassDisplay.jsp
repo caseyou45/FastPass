@@ -13,26 +13,39 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style><%@include file="/css/default.css"%></style>
         <style><%@include file="/css/FastPass.css"%></style>
+        <style><%@include file="/css/header.css"%></style>
 
         <title>FastPass</title>
     </head>
     <body>
         <header>
-            <a href="/"><img src="images/SWLogo.png" width="340" height="auto" /></a>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
-                    <div>
-                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                        <a  href="PassengerLogOut" class="logout">Logout</a>
+                    <div class="header_useracc">
+                        <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                        <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
+                            <button type="submit" class="LogInEnroll" value="account">
+                                <img src="images/login_icon.png" height="15" width="auto">
+                                <span> Account</span>
+                            </button>
+                        </form>
                     </div>
                 </c:when>
                 <c:otherwise >
-                    <div>
-                        <a href="LogIn.jsp" class="login">Log In</a>
-                        <a href="SignUp.jsp" class="signup">Create Account</a>
+                    <div class="header_useracc">
+                        <!--these have to be in reverse order i dont really know why but it works - john -->
+                        <a href='SignUp.jsp' class="CreateAccount">Create account</a>
+                        <form action="LogIn.jsp" method="post">
+                            <button type="submit" class="LogInEnroll" value="logIn">
+                                <img src="images/login_icon.png" height="15" width="auto">
+                                <span> Log In</span>
+                            </button>
+                        </form>
+                        <span class="LogInTip">You haven't escaped, you know.</span>
                     </div>
                 </c:otherwise>
             </c:choose>
+            <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
         </header>
         <section>
             <div class="fastpass">

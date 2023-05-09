@@ -22,10 +22,14 @@
         <header>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
-                    <div>
-                        <!-- TODO!! -->
-                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                        <a  href="PassengerLogOut" class="logout">Logout</a>
+                    <div class="header_useracc">
+                        <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                        <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
+                            <button type="submit" class="LogInEnroll" value="account">
+                                <img src="images/login_icon.png" height="15" width="auto">
+                                <span> Account</span>
+                            </button>
+                        </form>
                     </div>
                 </c:when>
                 <c:otherwise >

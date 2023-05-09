@@ -16,18 +16,23 @@
         <style><%@include file="/css/default.css"%></style>
         <style><%@include file="/css/FastPassOptions.css"%></style>
         <style><%@include file="/css/header.css"%></style>
+        <style><%@include file="/css/shared_ui.css"%></style>
 
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Account </title>
     </head>
-    <body>
+    <body><div class="mainContentTrim">
         <header>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
-                    <div>
-                        <!-- TODO!! -->
-                        <a  href="AccountInfo?accountNumber=${passenger.accountNumber}" class="account">Account</a>
-                        <a  href="PassengerLogOut" class="logout">Logout</a>
+                    <div class="header_useracc">
+                        <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                        <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
+                            <button type="submit" class="LogInEnroll" value="account">
+                                <img src="images/login_icon.png" height="15" width="auto">
+                                <span> Account</span>
+                            </button>
+                        </form>
                     </div>
                 </c:when>
                 <c:otherwise >
@@ -40,7 +45,7 @@
                                 <span> Log In</span>
                             </button>
                         </form>
-                        <span class="LogInTip">Log in to purchase fast pass</span>
+                        <span class="LogInTip">I don't think you should be here</span>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -48,10 +53,16 @@
         </header>
         <main>
             <p class="user-message">${userMessage}</p>
-            <h1>Actives Passes for ${passenger.firstName}</h1>
-            <p>Unused FastPasses Left: ${fastPassCount}</p>
-            <a href='PurchaseFastPass.jsp'>Buy FastPass</a>
-            <a href='FastPassStart.jsp'>Connect FastPass</a>
+            <h1 class="formHeading">Actives Passes for ${passenger.firstName}</h1>
+            <p style="margin-bottom: 5px;">Unused FastPasses Left: ${fastPassCount}</p>
+            <div class="RowForm">
+                <form action="PurchaseFastPass.jsp" method="post" style="padding: 5px 0;">
+                    <button type="submit" class="ActionablePrimary" value="">Buy FastPass</button>
+                </form>
+                <form action="FastPassStart.jsp" method="post" style="padding: 5px 0;">
+                    <button type="submit" class="ActionablePrimary" value="">Connect FastPass</button>
+                </form>
+            </div>
 
             <div>
                 <p>Check Flight(s) Below For Details </p>
@@ -80,6 +91,5 @@
                 </c:forEach>
             </table>
         </main>
-    <body>
-    </body>
+    </div></body>
 </html>
