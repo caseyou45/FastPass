@@ -103,7 +103,7 @@
                     </div>
                         
                           <div>
-                        <label for="passengerPasswordRETYPE">Retype Password</label> <input type="password"
+                              <label for="passengerPasswordRETYPE">Retype Password</label> <input type="password" value="${passenger.password}"
                                                               name="passengerPasswordRETYPE" id="passengerPasswordRETYPE">
                     </div>
                       

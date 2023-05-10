@@ -109,19 +109,21 @@
                  </form>
                 </div>
                      <br>
-                  <c:choose>
+                     
+                        <c:if test="${not empty deleteSuccess}">
+                         <div class="user-message" style="margin-bottom:5px">Card was deleted successfully!</div>
+                        </c:if>
+                         <br>
+                 <c:choose>
                     <c:when test="${empty creditCards}">
                       <p style="margin-bottom: 5px;">No credit cards to display</p>
                
                    </c:when>
                  <c:otherwise>
                    <c:forEach var="creditCard" items="${creditCards}"> 
-                        
-        
-                       
+   
             <table>  
-                
-               
+     
                 <thead>
                     <tr>
                         <th>CREDIT/DEBIT CARD #</th>
@@ -161,9 +163,11 @@
                         </form>
                  </div>    
                  </c:forEach>            
-          
+         
         </c:otherwise>
              </c:choose>
+       
+
                   
                       <script>
                           

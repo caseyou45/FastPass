@@ -4,15 +4,14 @@ import business.CreditCard;
 import business.Passenger;
 import database.CreditCardDB;
 import database.PassengerDB;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.sql.SQLException;
-
 import validation.CreditCardEntry;
 import validation.PassengerSignUpEntry;
 

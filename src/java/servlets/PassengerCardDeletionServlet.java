@@ -47,15 +47,16 @@ public class PassengerCardDeletionServlet extends HttpServlet {
                 List<CreditCard> creditCards = CreditCardDB.getPassengerCreditCard(passengerId);
                 request.setAttribute("creditCards", creditCards);
                 URL = "/PassengerProfile.jsp";
+                request.setAttribute("userMessage", "Card has been successfully deleted");
              
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(PassengerCardDeletionServlet.class.getName()).log(Level.SEVERE, null, ex);
                 request.setAttribute("userMessage", "An error occurred while deleting the credit card");
-                
             }
             
+             request.setAttribute("deleteSuccess", true);
              RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(URL);
-            dispatcher.forward(request, response);
+             dispatcher.forward(request, response);
   
         }
     
