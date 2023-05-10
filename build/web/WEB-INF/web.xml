@@ -40,6 +40,22 @@
         <servlet-name>DisplayFastPassServlet</servlet-name>
         <servlet-class>servlets.DisplayFastPassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PassengerProfileServlet</servlet-name>
+        <servlet-class>servlets.PassengerProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PassengerEditServlet</servlet-name>
+        <servlet-class>servlets.PassengerEditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PassengerCardEditServlet</servlet-name>
+        <servlet-class>servlets.PassengerCardEditServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PassengerCardDeletionServlet</servlet-name>
+        <servlet-class>servlets.PassengerCardDeletionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>PassengerLoginServlet</servlet-name>
         <url-pattern>/PassengerLogin</url-pattern>
@@ -79,6 +95,22 @@
     <servlet-mapping>
         <servlet-name>DisplayFastPassServlet</servlet-name>
         <url-pattern>/DisplayFastPass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassengerProfileServlet</servlet-name>
+        <url-pattern>/PassengerProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassengerEditServlet</servlet-name>
+        <url-pattern>/PassengerEditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassengerCardEditServlet</servlet-name>
+        <url-pattern>/PassengerCardEditServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PassengerCardDeletionServlet</servlet-name>
+        <url-pattern>/PassengerCardDeletionServlet</url-pattern>
     </servlet-mapping>
 
     <session-config>

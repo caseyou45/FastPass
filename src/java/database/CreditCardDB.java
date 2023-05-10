@@ -77,5 +77,25 @@ public class CreditCardDB {
         return creditCards;
 
     }
+    
+     //delete credit card 
+ public static void deleteCreditCard(int ccId) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        try (Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD)) {
+            connection.setAutoCommit(false);
+
+            String query = "DELETE FROM creditcard WHERE cc_id = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, ccId);
+                preparedStatement.executeUpdate();
+                connection.commit();
+            }
+        }
+  
+}
+    
+    
 
 }

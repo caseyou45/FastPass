@@ -122,5 +122,35 @@ public class PassengerDB {
 
         return passengerExits;
     }
+    
+    //update passenger info
+     public static boolean passengerUpdate(Passenger passenger) throws SQLException, ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+    
+    Connection connection = DriverManager.getConnection(DBUtil.LOCAL_URL, DBUtil.LOCAL_USER, DBUtil.LOCAL_PASSWORD);
+    connection.setAutoCommit(false);
+    
+    String query = "UPDATE passenger SET passenger_lastname=?, passenger_firstname=?, passenger_middlename=?," +
+            " passenger_dob=?, passenger_email=?, passenger_password=? WHERE passenger_accountnumber=?";
+    
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    
+            preparedStatement.setString(1, passenger.getLastName());
+            preparedStatement.setString(2, passenger.getFirstName());
+            preparedStatement.setString(3, passenger.getMiddleName());
+            preparedStatement.setDate(4, passenger.getDob());
+            preparedStatement.setString(5, passenger.getEmail());
+            preparedStatement.setString(6, passenger.getPassword());
+            preparedStatement.setString(7, passenger.getAccountNumber());
+
+            int passengerUpdated = preparedStatement.executeUpdate();
+            
+             connection.commit();
+             preparedStatement.close();
+             connection.close();
+            return passengerUpdated > 0;
+        
+      
+     }
 
 }

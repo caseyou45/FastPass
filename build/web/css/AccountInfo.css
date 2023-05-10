@@ -1,0 +1,64 @@
+
+/* 
+    Author : Regina
+*/
+
+
+
+
+.formHeading  {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.my-account-button {
+    display:inline-block;
+    margin-left: 521px;   
+    text-decoration: none;
+    color: #304cb2;
+
+
+}
+
+.my-account-button:hover{
+    color: #304cb2;
+}
+
+.my-account-button-delete {
+    display:inline-block;
+    margin-left: 790px;   
+    background-color: #f5f5f5;
+    border: none;
+    color: #304cb2;
+    font: 17px Arial;
+    cursor: pointer;
+    
+
+}
+
+
+.formHeadingContainer {
+    display:flex;
+    align-items: center;
+   
+}
+
+
+.my-form {
+    background:  #f5f5f5;
+}
+
+table {
+    text-align:left;
+    font: bold 12px/14px Arial;
+    color: #666;
+    letter-spacing: -0.24px;
+    
+}
+
+td {
+    text-align: left;
+    font: 18px Arial;
+    padding: 15px 5px 15px;
+    
+}

@@ -21,11 +21,18 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Fast Pass | Account </title>
     </head>
+    
     <body><div class="mainContentTrim">
         <header>
             <c:choose>
                 <c:when test="${passenger.authenticated}">
                     <div class="header_useracc">
+                        <div class="greeting-container">
+                        
+                            <p class="greeting"> Hi,${passenger.firstName}</p>
+                        <a class="profile-details-link"href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}">Profile Details</a> 
+                        </div>
+                        
                         <a href="PassengerLogOut" class="CreateAccount">Logout</a>
                         <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
                             <button type="submit" class="LogInEnroll" value="account">
@@ -51,6 +58,8 @@
             </c:choose>
             <a href='mainpage.jsp'><img src="images/swa_logo_dark.svg" class="header_logo"/></a>
         </header>
+            
+            <br>
         <main>
             <p class="user-message">${userMessage}</p>
             <h1 class="formHeading">Actives Passes for ${passenger.firstName}</h1>

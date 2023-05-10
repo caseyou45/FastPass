@@ -80,7 +80,7 @@
                 <div class="form-row">
                     <div>
                         <label for="passengerDob">Date of Birth</label>
-                        <input id="passengerDob" name="passengerDob" type="date" value="${passenger.displayDob}" />
+                        <input name="passengerDob" type="date" value="${passenger.displayDob}" />
                     </div>
                 </div>
             </section>

@@ -167,4 +167,18 @@ select {
 
 }
 
+.greeting-container {
+    text-align: right;
+   position: absolute;
+   right: 400px;
+   font: 14px/16px Arial;
 
+}
+
+.greeting {
+      
+       margin:5px;
+      color: #304cb2;
+     font-style:italic;
+    
+}
