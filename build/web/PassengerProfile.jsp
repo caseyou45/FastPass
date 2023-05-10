@@ -52,7 +52,7 @@
                                 <span> Log In</span>
                             </button>
                         </form>
-                        <span class="LogInTip">I don't think you should be here</span>
+                        <span class="LogInTip">You don't even care. Do you?</span>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -105,7 +105,7 @@
                    
                    <form class="my-form" action="PassengerCardEditServlet?accountNumber=${passenger.accountNumber}" method="post">
                      <input type="hidden" name="passenger_id" value="${creditCard.passengerId}" />
-                     <a class="my-account-button" href="AddCard.jsp" >Add</a>                                                  
+                     <a class="my-account-button" href="AddCard.jsp" >Add</a>
                  </form>
                 </div>
                      <br>

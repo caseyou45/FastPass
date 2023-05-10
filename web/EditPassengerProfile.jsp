@@ -24,7 +24,7 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Edit Personal Information </title>
     </head>
-    <body>
+    <body style="margin:8px;">
      
          <header>
             <c:choose>
@@ -37,7 +37,7 @@
                         <a class="profile-details-link"href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}">Profile Details</a> 
                         </div>
                         
-                        <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                        <a href="PassengerLogOut" class="CreateAccount" style="margin-top: 0;">Logout</a>
                         <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
                             <button type="submit" class="LogInEnroll" value="account">
                                 <img src="images/login_icon.png" height="15" width="auto">
@@ -48,14 +48,14 @@
                 </c:when>
                 <c:otherwise >
                     <div class="header_useracc">
-                        <a href='SignUp.jsp' class="CreateAccount">Create account</a>
+                        <a href='SignUp.jsp' class="CreateAccount" style="margin-top: 0;">Create account</a>
                         <form action="LogIn.jsp" method="post">
                             <button type="submit" class="LogInEnroll" value="logIn">
                                 <img src="images/login_icon.png" height="15" width="auto">
                                 <span> Log In</span>
                             </button>
                         </form>
-                        <span class="LogInTip">I don't think you should be here</span>
+                        <span class="LogInTip">I'm not angry. Just go back to the testing area.</span>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -70,9 +70,6 @@
                      <section> 
                      <section class="inputBox">
                           <h1 class="formHeading">Edit Personal Information</h1>   
-                <div class="form-row">
-                     
-                </div>
           
                <div class="form-row">
                     
@@ -120,11 +117,11 @@
                     </div>
                 </div>
                     
-                     <div>
+                     <div style="gap: 8px; margin-top: -0.8rem;">
                         
-                            <button type="submit" class="ActionablePrimary" value="Save">Save</button>  
+                            <button type="submit" class="ActionablePrimary" value="Save"  style="margin-left: 2px; width: 200px; height: 35px;">Save</button>  
      
-                             <a href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}" class="cancel"> Cancel</a>
+                             <a href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}" class="loginlink"> Cancel</a>
                     
                   </div>
                </section>

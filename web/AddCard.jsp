@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="images/favicon.png">
         <title>Add credit/debit card</title>
     </head>
-    <body>
+    <body style="margin: 8px;">
         <body><div class="mainContentTrim">
      
          <header>
@@ -36,7 +36,7 @@
                         <a class="profile-details-link"href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}">Profile Details</a> 
                         </div>
                         
-                        <a href="PassengerLogOut" class="CreateAccount">Logout</a>
+                        <a href="PassengerLogOut" class="CreateAccount" style="margin-top: 0;">Logout</a>
                         <form action="AccountInfo?accountNumber=${passenger.accountNumber}" method="post">
                             <button type="submit" class="LogInEnroll" value="account">
                                 <img src="images/login_icon.png" height="15" width="auto">
@@ -48,14 +48,14 @@
                 <c:otherwise >
                     <div class="header_useracc">
                         <!--these have to be in reverse order i dont really know why but it works - john -->
-                        <a href='SignUp.jsp' class="CreateAccount">Create account</a>
+                        <a href='SignUp.jsp' class="CreateAccount" style="margin-top: 0;">Create account</a>
                         <form action="LogIn.jsp" method="post">
                             <button type="submit" class="LogInEnroll" value="logIn">
                                 <img src="images/login_icon.png" height="15" width="auto">
                                 <span> Log In</span>
                             </button>
                         </form>
-                        <span class="LogInTip">I don't think you should be here</span>
+                        <span class="LogInTip">I know you're there. I can feel you here.</span>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -112,11 +112,11 @@
                     </div>
                 </div>
     
-                    <div>
-                        <button type="submit" class="ActionablePrimary" value="Save">Save</button>
+                    <div style="gap: 8px; margin-top: -0.8rem;">
+                        <button type="submit" class="ActionablePrimary" value="Save" style="margin-left: 2px; width: 200px; height: 35px;">Save</button>
                                                                    
                    
-                      <a href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}" class="cancel">Cancel</a>                  
+                      <a href="PassengerProfileServlet?accountNumber=${passenger.accountNumber}" class="loginlink">Cancel</a>                  
                   </div>
                     </section>
                     </section>

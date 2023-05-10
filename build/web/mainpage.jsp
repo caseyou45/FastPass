@@ -68,6 +68,10 @@
                     <a href='AccountDisplay.jsp'>AccountDisplay</a>
                     <a href='FastPassDisplay.jsp'>FastPassDisplay</a>
                     <a href='FastPassOptions.jsp'>FastPassOptions</a>
+                    
+                    <a href='AddCard.jsp'>AddCard</a>
+                    <a href='EditPassengerProfile.jsp'>EditPassengerProfile</a>
+                    <a href='PassengerProfile.jsp'>PassengerProfile</a>
                     <br><br><br><br>
                     <p class="user-message">${userMessage}</p>
                 </div>
